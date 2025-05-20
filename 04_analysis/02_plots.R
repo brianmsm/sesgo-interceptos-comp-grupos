@@ -21,26 +21,32 @@ summary_tbl <- read_csv(summary_csv, show_col_types = FALSE)
 
 # ---- 2. PLOT: Sesgo medio -----------------------------------------
 
-bias_long <- summary_tbl %>%
-  pivot_longer(cols = ends_with("_bias"),
-               names_to = "metric", values_to = "bias") %>%
-  mutate(method = str_remove(metric, "_bias$"))
+bias_long <- summary_tbl %>% 
+  pivot_longer(cols = matches("_bias_(mean|low|high)$"),
+               names_to  = c("method", "stat"),
+               names_pattern = "(d_[^_]+)_bias_(.*)",
+               values_to = "value") %>% 
+  pivot_wider(names_from = stat, values_from = value) %>% 
+  mutate(method = factor(method,
+                         levels = c("d_mean","d_fscore","d_mimic"),
+                         labels = c("Mean score","Factor score","MIMIC")))
 
-p_bias <-
-  ggplot(bias_long,
-         aes(x = Delta_nu, y = bias,
-             colour = method, shape = method)) +
-  geom_hline(yintercept = 0, linewidth = .3, colour = "red") +
+p_bias <- ggplot(bias_long,
+                 aes(x = Delta_nu, y = mean,
+                     colour = method, fill = method,
+                     shape = method, group = method)) +
+  geom_hline(yintercept = 0, colour = "red", linewidth = .3) +
+  geom_ribbon(aes(ymin = low, ymax = high), alpha = .15, colour = NA) +
   geom_line(linewidth = 1, linetype = "dotted") +
   geom_point(size = 3) +
   facet_grid(Delta_theta ~ n_total,
              labeller = labeller(
-               Delta_theta = function(x) sprintf("Δθ = %s", x),
-               n_total     = function(x) sprintf("N = %s", x)
-             )) +
+               Delta_theta = \(x) sprintf("Δθ = %s", x),
+               n_total     = \(x) sprintf("N = %s", x))) +
   scale_colour_brewer(palette = "Dark2", name = "Método") +
+  scale_fill_brewer(palette = "Dark2",  name = "Método") +
   scale_shape_manual(values = c(16, 17, 15), name = "Método") +
-  labs(title = "Sesgo del estimador d según magnitud del sesgo de intercepto",
+  labs(title = "Sesgo del estimador d (media e IC 95 %)",
        x = expression(Delta*nu),
        y = expression("Sesgo ("*hat(d) - d[verdadero]*")")) +
   theme_bw(base_size = 12) +
@@ -58,32 +64,31 @@ ggsave(file.path(plots_dir, "bias_plot.png"),
 # ---- 3. PLOT: RMSE -------------------------------------------------
 
 rmse_long <- summary_tbl %>% 
-  pivot_longer(cols = ends_with("_rmse"),
-               names_to  = "metric",
-               values_to = "rmse") %>% 
-  mutate(method = str_remove(metric, "_rmse$"),
-         method = factor(method,
-                         levels = c("d_mean", "d_fscore", "d_mimic"),
-                         labels = c("Mean score", "Factor score", "MIMIC")),
-         Delta_theta = factor(Delta_theta,
-                              levels = sort(unique(Delta_theta)))
-  )
+  pivot_longer(cols = matches("_rmse_(mean|low|high)$"),
+               names_to  = c("method", "stat"),
+               names_pattern = "(d_[^_]+)_rmse_(.*)",
+               values_to = "value") %>% 
+  pivot_wider(names_from = stat, values_from = value) %>% 
+  mutate(method = factor(method,
+                         levels = c("d_mean","d_fscore","d_mimic"),
+                         labels = c("Mean score","Factor score","MIMIC")))
 
 p_rmse <- ggplot(rmse_long,
-                 aes(x = Delta_nu, y = rmse,
-                     colour = method, shape = method)) +
+                 aes(x = Delta_nu, y = mean,
+                     colour = method, fill = method,
+                     shape = method, group = method)) +
+  geom_ribbon(aes(ymin = low, ymax = high), alpha = .15, colour = NA) +
   geom_line(linewidth = 1, linetype = "dotted") +
   geom_point(size = 3) +
   facet_grid(Delta_theta ~ n_total,
              labeller = labeller(
-               Delta_theta = function(x) sprintf("Δθ = %s", x),
-               n_total     = function(x) sprintf("N = %s", x)
-             )) +
+               Delta_theta = \(x) sprintf("Δθ = %s", x),
+               n_total     = \(x) sprintf("N = %s", x))) +
   scale_colour_brewer(palette = "Dark2", name = "Método") +
+  scale_fill_brewer(palette = "Dark2",  name = "Método") +
   scale_shape_manual(values = c(16, 17, 15), name = "Método") +
-  labs(title = "RMSE del estimador d según magnitud del sesgo de intercepto",
-       x = expression(Delta*nu),
-       y = "RMSE") +
+  labs(title = "RMSE del estimador d (media e IC 95 %)",
+       x = expression(Delta*nu), y = "RMSE") +
   theme_bw(base_size = 12) +
   theme(legend.position = "bottom",
         panel.spacing.y  = unit(.8, "lines"),
