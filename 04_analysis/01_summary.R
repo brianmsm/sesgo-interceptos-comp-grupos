@@ -20,13 +20,24 @@ results <- readRDS(raw_rds)
 
 # ---- 2. RESUMEN ----------------------------------------------------
 
-summary_tbl <- results %>%
-  group_by(n_total, Delta_theta, Delta_nu) %>%
-  summarise(across(d_mean:d_mimic,
-                   list(bias = ~ mean(. - d_true, na.rm = TRUE),
-                        rmse = ~ sqrt(mean((. - d_true)^2, na.rm = TRUE))),
-                   .names = "{col}_{fn}"),
-            .groups = "drop")
+bias_cols <- c("d_mean", "d_fscore", "d_mimic")
+
+summary_tbl <- results %>% 
+  group_by(n_total, Delta_theta, Delta_nu) %>% 
+  summarise(
+    across(all_of(bias_cols),
+           ## cada función devuelve un escalar
+           list(
+             bias_mean  = ~ mean(.x - d_true, na.rm = TRUE),
+             bias_low   = ~ quantile(.x - d_true,  .025, na.rm = TRUE),
+             bias_high  = ~ quantile(.x - d_true,  .975, na.rm = TRUE),
+             rmse_mean  = ~ sqrt(mean((.x - d_true)^2, na.rm = TRUE)),
+             rmse_low   = ~ quantile(abs(.x - d_true), .025, na.rm = TRUE),
+             rmse_high  = ~ quantile(abs(.x - d_true), .975, na.rm = TRUE)
+           ),
+           .names = "{.col}_{.fn}")
+  ) %>% 
+  ungroup()
 
 # ---- 3. GUARDAR ----------------------------------------------------
 
