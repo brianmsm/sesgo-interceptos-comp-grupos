@@ -1,0 +1,386 @@
+---
+title: "Evaluación del Impacto del Sesgo de Ítems en la
+    Comparabilidad de Grupos: Un Estudio de Simulación con 
+    Puntuaciones Promediadas, Factor Scores y Modelos MIMIC."
+authors:
+  - name: Brian Norman Peña-Calero
+    corresponding: true
+    affiliations: Universidad Complutense de Madrid
+date: now
+date-format: "DD MMMM, YYYY"
+format: 
+  html:
+    theme:
+      light: flatly 
+      dark: darkly
+    toc: true
+    toc-depth: 5
+    number-sections: true
+    anchor-sections: true
+    code-line-numbers: true
+    code-overflow: scroll
+    code-copy: hover
+    code-link: true
+    code-fold: false
+    code-tools: true
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    code-line-numbers: true
+execute: 
+  fig-dpi: 300
+  fig-align: center
+  cache: true
+lang: es
+lightbox: true
+embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "latex") {
+  knitr::opts_chunk$set(dev = "cairo_pdf")
+}
+```
+
+# Introducción
+
+Este proyecto de simulación investigará cómo la presencia de sesgo en los interceptos de los ítems afecta la comparabilidad de las puntuaciones entre dos grupos. Se examinará el impacto de diferentes magnitudes de sesgo de ítem y diferentes magnitudes de diferencias verdaderas en las medias latentes sobre tres métodos comunes de comparación: puntuaciones promediadas, factor scores derivados de Análisis Factorial Confirmatorio (AFC), y estimaciones de medias latentes de modelos MIMIC (Multiple Indicators Multiple Causes). El estudio también considerará el efecto del tamaño muestral en la precisión de estas comparaciones.
+
+# Objetivos
+
+## Objetivo General
+
+Evaluar cuantitativamente cómo diferentes magnitudes de sesgo en los interceptos de los ítems y diferentes niveles de diferencia verdadera en las medias latentes entre dos grupos afectan la comparabilidad de las puntuaciones estimadas mediante promedio, factor scores y modelos MIMIC, bajo distintas condiciones de tamaño muestral.
+
+## Objetivos Específicos
+
+a)  Determinar el grado de sesgo (en términos de *d* de Cohen) introducido en la comparación de medias grupales por diferentes niveles de sesgo en los interceptos de los ítems cuando no existe una diferencia real en la media latente entre los grupos.
+b)  Evaluar cómo el sesgo en los interceptos de los ítems distorsiona la estimación de diferencias de medias latentes verdaderas conocidas (pequeñas, medianas y grandes) entre los grupos.
+c)  Comparar la robustez y precisión de las puntuaciones promediadas, los factor scores (obtenidos de `lavaan` asumiendo invarianza escalar) y las estimaciones de medias latentes de modelos MIMIC frente al sesgo de los ítems.
+d)  Investigar la influencia del tamaño muestral (N=400 vs. N=800 total) en la magnitud del sesgo observado y la precisión de las estimaciones de las diferencias de medias.
+
+# Diseño de Simulación
+
+1.  Modelo de Generación de Datos Base:
+
+-   Estructura Factorial: 1 factor común.
+-   Número de Ítems: 10 ítems continuos con distribución normal.
+-   Cargas Factoriales ($\lambda$): Promedio de 0.7 +- 0.10.
+-   Varianza del Factor Latente ($\Psi$): Fijada a 1 en el grupo de referencia y para la generación de datos
+-   Interceptos de los Ítems ($\nu$) Base: Fijados a 0 para todos los ítems en el grupo de referencia.
+-   Varianzas de Error de los Ítems (θ): Se simula en situación estandarizada por lo que $\theta_j = 1 - \lambda_j^2$.
+
+2.  Variables Independientes (Factores de la Simulación):
+
+    | Factor | Niveles | Descripción del Nivel |
+    |:---------------------|:-----------------------|:--------------------------|
+    | 1\. Diferencia Real Medias Latentes ($\Delta \theta$) | 4 niveles: 0, 0.2, 0.5, 0.8 | Nula, Pequeña, Mediana, Grande (en unidades de *d* de Cohen) |
+    | 2\. Magnitud Sesgo Intercepto Ítem ($\Delta \nu$)\* | 4 niveles: 0, +0.2, +0.5, +0.8 | Nulo, Pequeño, Mediano, Grande (en unidades de DE del ítem) |
+    | 3\. Tamaño Muestral Total (N) | 2 niveles: 400, 800 | 200 por grupo, 400 por grupo |
+
+    -   **Nota sobre** $\Delta \nu$: El sesgo en el intercepto se introducirá en el **30% de los ítems (es decir, 3 ítems)**. Estos 3 ítems serán siempre los mismos a lo largo de todas las condiciones. El valor de $\Delta \nu$ indica la magnitud de la diferencia en el intercepto de estos 3 ítems para el Grupo Focal en comparación con el Grupo de Referencia (favoreciendo al Grupo Focal, $\nu_{item,Focal} = \nu_{item,Ref} + \Delta \nu$.
+
+3.  Número Total de Condiciones de Simulación: 4 ($\Delta \theta$) x 4 ($\Delta \nu$) x 2 (N) = **32 condiciones**.
+
+4.  Número de Replicaciones por Condición: 500
+
+5.  Análisis para evaluación:
+
+    -   Para Puntuaciones Sumadas (o Promedio): *d* de Cohen observada para la diferencia de medias entre el Grupo Focal y el Grupo de Referencia.
+    -   Para Factor Scores (de `lavaan`): *d* de Cohen observada para la diferencia de medias de los factor scores entre grupos (estimados de un AFC multigrupo que asume invarianza escalar).
+    -   Para Modelos MIMIC: *d* de Cohen observada para la diferencia estimada en la media del factor latente entre grupos.
+    -   Métrica de Sesgo Primaria: Para todas las *d* observadas: $Sesgo = d_{observada} - d_{verdadera}$ (donde $d_{verdadera}$ es el $\Delta \theta$ de la condición).
+    
+    
+# Modelo poblacional y manipulación del sesgo
+
+La variable observada del ítem $j$ para la persona $i$ se genera a partir de un modelo de medición unidimensional:
+
+$$
+X_{ij} \;=\; \tau_{j}^{(g_i)} \;+\; \lambda_{j}\,\theta_{i}^{(g_i)} \;+\; \varepsilon_{ij},
+\qquad  j = 1,\dots,10,\; i = 1,\dots,n,
+$$
+
+donde
+
++----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| Símbolo                                                  | Significado                                                                     | Manipulación en la simulación                                                                                                     |
++==========================================================+=================================================================================+===================================================================================================================================+
+| $\theta_{i}^{(g)} \sim \mathcal{N}(\mu_\theta^{(g)}, 1)$ | puntuación latente del individuo $i$ en el grupo $g$                            | la media se fija a $\mu_\theta^{(0)} = 0$ y se varía $$\Delta\theta = \mu_\theta^{(1)} - \mu_\theta^{(0)} \in \{0,0.2,0.5,0.8\}$$ |
++----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| $\lambda_{j}$                                            | carga factorial del ítem $j$                                                    | muestreadas una vez de $U(0.60,0.80)$ y **no se manipulan**                                                                       |
++----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| $\tau_{j}^{(g)}$                                         | intercepto del ítem $j$ en el grupo $g$                                         | para los ítems $3,6,9$ del **grupo focal** se añade\                                                                              |
+|                                                          |                                                                                 | $$\Delta\nu \in \{0,0.2,0.5,0.8\}$$ $\Rightarrow$ $\tau_{j}^{(1)} = \tau_{j}^{(0)} + \Delta\nu$                                   |
++----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| $\varepsilon_{ij}$                                       | error residual, $\varepsilon_{ij}\sim\mathcal{N}(0,\ \sigma_{\varepsilon j}^2)$ | $\sigma_{\varepsilon j}^2 = 1 - \lambda_{j}^2$ para que $\operatorname{Var}(X_{ij}) = 1$                                          |
++----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+La manipulación experimental se concentra, por tanto, **exclusivamente en los interceptos** de tres ítems — provocando *Differential Intercept Functioning* — y en la media latente $\Delta\theta$.\
+Todos los demás parámetros permanecen invariantes entre los dos grupos.
+
+# Estadísticos de evaluación
+
+Para cada réplica se calculan:
+
+-   Sesgo de $d$:
+
+    $$
+      e_r = \hat{d}_r - d_{\text{true}}
+    $$
+
+-   Raíz del error cuadrático medio (RMSE):
+
+    $$
+      \text{RMSE} = \sqrt{\; \frac1{R}\sum_{r=1}^R e_r^{\,2}}
+    $$
+
+y sus **intervalos empíricos al 95 %** se obtienen como los cuantiles 2.5 % y 97.5 % de la distribución de $e_r$ (o $|e_r|$ para RMSE) a lo largo de las $R = 500$ réplicas por condición.
+
+# Simulación
+
+La codificación de la simulación se organizó en **módulos** dentro de la carpeta `03_functions/`.  
+El árbol completo se muestra a continuación:
+
+```{r}
+fs::dir_tree("03_functions/")
+```
+
+Además, todo ello se encuentra almacenado en el repositorio Github: [https://github.com/brianmsm/sesgo-interceptos-comp-grupos](https://github.com/brianmsm/sesgo-interceptos-comp-grupos).
+
+## Config
+
+Define **todas** las condiciones de simulación (niveles de $\Delta \theta$ y $\Delta \nu$), tamaños muestrales y réplicas), crea la estructura de carpetas del proyecto y detecta los núcleos disponibles.  
+Finalmente guarda el objeto `config_sim.rds`, que actúa como punto único de referencia en los demás scripts.
+
+```{r}
+{{< include /03_functions/00_config.R >}}
+```
+
+El archivo de configuración contiene:
+
+```{r}
+config
+```
+
+## Helpers
+
+Funciones utilitarias comunes:
+
+* `make_lambda()` — genera las cargas $\lambda_j$ ~ $U(0.60, 0.80)$.  
+* `cohen_d()` y `z_score()` — estadísticas básicas.  
+* `safe_cfa()` / `safe_sem()` — wrappers que silencian ‘warnings’ de **lavaan**.  
+
+```{r}
+{{< include /03_functions/01_helpers.R >}}
+```
+
+## Generator
+
+Implementa dos motores de simulación:
+
+1. **`manual_generator()`** — más rápido y transparente: añade el sesgo ($\Delta \nu$) sólo a los ítems 3-6-9 del grupo focal.  
+2. **`lavaan_generator()`** — usa `simulateData()` por si se quiere reproducir exactamente la matriz poblacional.
+
+Función principal `generate_data()`, con argumento `engine = "manual" | "lavaan"`.
+
+```{r}
+{{< include /03_functions/02_generator.R >}}
+```
+
+Ejemplo:
+
+```{r}
+data_ejemplo <- generate_data(400, 0.5, 0.2)
+data_ejemplo
+```
+
+## Estimators
+
+* Ajusta un **CFA** para recuperar la diferencia de medias latentes — devuelta como `d_fscore`.  
+* Calcula `d_mean` (promedio de ítems estandarizado) y `d_mimic` (pendiente *grupo → factor* en modelo MIMIC).  
+* La función de alto nivel `analyse_data()` empaqueta todo en un `list`.
+
+```{r}
+{{< include /03_functions/03_estimators.R >}}
+```
+
+Ejemplo:
+
+```{r}
+analisis_ejemplo <- analyse_data(data_ejemplo)
+analisis_ejemplo
+```
+
+## Sim One
+
+Integra **una réplica** completa:
+
+1. Fija semilla.  
+2. Llama a `generate_data()` y `analyse_data()`.  
+3. Devuelve un `tibble` con `d_true`, `d_mean`, `d_fscore`, `d_mimic`.  
+4. (Opcional) guarda los datos crudos en `01_data/raw/`.
+
+```{r}
+{{< include /03_functions/04_sim_one.R >}}
+```
+
+Ejemplo:
+
+```{r}
+sim_one(seed = 2025, n_total = 400, 
+        Delta_theta = 0.5, Delta_nu = 0.2)
+```
+
+## Parallel
+
+Expande el grid (32 condiciones × 500 réplicas), asigna **una semilla única por fila** y lanza el cálculo en paralelo con **future + progressr**:
+
+* Guarda `sim_results_raw.rds`
+
+```{r}
+#| eval: false
+{{< include /03_functions/05_parallel.R >}}
+```
+
+Una vez cargado y configurado, se procedió a realizar la simulación:
+
+![Simulación usando paralelización con todos los núcleos activos](images/sim-status.png){fig-align="center"}
+
+::: {.callout-note}
+Con esta estructura modular resulta sencillo depurar o sustituir solo la parte interesada (p. ej., cambiar el generador o añadir un nuevo estimador) sin afectar al resto del flujo.
+:::
+
+# Análisis
+
+Realizaremos primero un resumen de las simulaciones enfocados en *bias* y *rmse*.
+
+```{r}
+config <- readRDS(here::here("config_sim.rds"))
+DIRS   <- config$dirs
+raw_rds <- file.path(DIRS$processed, "sim_results_raw.rds")
+
+results <- readRDS(raw_rds)
+
+# ---- RESUMEN ---------
+
+bias_cols <- c("d_mean", "d_fscore", "d_mimic")
+
+summary_tbl <- results %>% 
+  group_by(n_total, Delta_theta, Delta_nu) %>% 
+  summarise(
+    across(all_of(bias_cols),
+           ## cada función devuelve un escalar
+           list(
+             bias_mean  = ~ mean(.x - d_true, na.rm = TRUE),
+             bias_low   = ~ quantile(.x - d_true,  .025, na.rm = TRUE),
+             bias_high  = ~ quantile(.x - d_true,  .975, na.rm = TRUE),
+             rmse_mean  = ~ sqrt(mean((.x - d_true)^2, na.rm = TRUE)),
+             rmse_low   = ~ quantile(abs(.x - d_true), .025, na.rm = TRUE),
+             rmse_high  = ~ quantile(abs(.x - d_true), .975, na.rm = TRUE)
+           ),
+           .names = "{.col}_{.fn}")
+  ) %>% 
+  ungroup()
+
+summary_tbl
+```
+
+## Bias
+
+En el gráfico de sesgo observamos cuánto se desplaza, en promedio, la estimación de la diferencia de medias ($\hat{d}$) con respecto al valor poblacional verdadero. Cuando el sesgo de intercepto es nulo ($\Delta \nu = 0$) las tres curvas de los métodos se sitúan prácticamente sobre la línea roja de referencia, confirmando que el procedimiento es imparcial en ausencia de distorsión. Sin embargo, basta incrementar gradualmente $\Delta \nu$ para que todas las líneas asciendan con una pendiente casi perfecta: cuanto mayor es la distorsión en los interceptos, mayor la sobre-estimación de la diferencia entre grupos. El método basado en MIMIC es el que muestra más rápidamente esa desviación, seguido por el promedio de ítems y por los factor scores; este orden se mantiene en todos los tamaños muestrales y en los cuatro escenarios de diferencia latente (\Delta \theta). Las bandas sombreadas, que representan el intervalo empírico del 95 %, se vuelven apenas más estrechas al pasar de N=400 a N=800N, lo que indica que aumentar la muestra reduce muy poco la incertidumbre cuando el sesgo sistemático domina el error.
+
+```{r}
+bias_long <- summary_tbl %>% 
+  pivot_longer(cols = matches("_bias_(mean|low|high)$"),
+               names_to  = c("method", "stat"),
+               names_pattern = "(d_[^_]+)_bias_(.*)",
+               values_to = "value") %>% 
+  pivot_wider(names_from = stat, values_from = value) %>% 
+  mutate(method = factor(method,
+                         levels = c("d_mean","d_fscore","d_mimic"),
+                         labels = c("Mean score","Factor score","MIMIC")))
+```
+
+
+```{r}
+#| fig-width: 9
+#| fig-height: 8
+
+ggplot(bias_long,
+                 aes(x = Delta_nu, y = mean,
+                     colour = method, fill = method,
+                     shape = method, group = method)) +
+  geom_hline(yintercept = 0, colour = "red", linewidth = .3) +
+  geom_ribbon(aes(ymin = low, ymax = high), alpha = .15, colour = NA) +
+  geom_line(linewidth = 1, linetype = "dotted") +
+  geom_point(size = 3) +
+  facet_grid(Delta_theta ~ n_total,
+             labeller = labeller(
+               Delta_theta = \(x) sprintf("Δθ = %s", x),
+               n_total     = \(x) sprintf("N = %s", x))) +
+  scale_colour_brewer(palette = "Dark2", name = "Método") +
+  scale_fill_brewer(palette = "Dark2",  name = "Método") +
+  scale_shape_manual(values = c(16, 17, 15), name = "Método") +
+  labs(title = "Sesgo del estimador d (media e IC 95 %)",
+       x = expression(Delta*nu),
+       y = expression("Sesgo ("*hat(d) - d[verdadero]*")")) +
+  theme_bw(base_size = 12) +
+  theme(legend.position = "bottom",
+        panel.spacing.y  = unit(.8, "lines"),
+        panel.spacing.x  = unit(.6, "lines"))
+```
+
+## RMSE
+
+El gráfico de RMSE confirma esa lectura. El RMSE combina varianza entre réplicas y sesgo al cuadrado; sin embargo, las curvas resultan casi superponibles a las del sesgo medio porque la variabilidad de las estimaciones es muy pequeña en comparación con la magnitud del sesgo introducido por $\Delta \nu$. En otras palabras, los estimadores son muy precisos pero potencialmente muy inexactos: convergen de forma consistent hacia un valor equivocado cuando los interceptos están contaminados. De nuevo, las diferencias entre métodos son claras: MIMIC acumula el mayor error total, mientras que el promedio y los factor scores muestran un crecimiento más moderado.
+
+```{r}
+rmse_long <- summary_tbl %>% 
+  pivot_longer(cols = matches("_rmse_(mean|low|high)$"),
+               names_to  = c("method", "stat"),
+               names_pattern = "(d_[^_]+)_rmse_(.*)",
+               values_to = "value") %>% 
+  pivot_wider(names_from = stat, values_from = value) %>% 
+  mutate(method = factor(method,
+                         levels = c("d_mean","d_fscore","d_mimic"),
+                         labels = c("Mean score","Factor score","MIMIC")))
+```
+
+```{r}
+#| fig-width: 9
+#| fig-height: 8
+ggplot(rmse_long,
+                 aes(x = Delta_nu, y = mean,
+                     colour = method, fill = method,
+                     shape = method, group = method)) +
+  geom_ribbon(aes(ymin = low, ymax = high), alpha = .15, colour = NA) +
+  geom_line(linewidth = 1, linetype = "dotted") +
+  geom_point(size = 3) +
+  facet_grid(Delta_theta ~ n_total,
+             labeller = labeller(
+               Delta_theta = \(x) sprintf("Δθ = %s", x),
+               n_total     = \(x) sprintf("N = %s", x))) +
+  scale_colour_brewer(palette = "Dark2", name = "Método") +
+  scale_fill_brewer(palette = "Dark2",  name = "Método") +
+  scale_shape_manual(values = c(16, 17, 15), name = "Método") +
+  labs(title = "RMSE del estimador d (media e IC 95 %)",
+       x = expression(Delta*nu), y = "RMSE") +
+  theme_bw(base_size = 12) +
+  theme(legend.position = "bottom",
+        panel.spacing.y  = unit(.8, "lines"),
+        panel.spacing.x  = unit(.6, "lines"))
+```
+
+
+# Conclusiones
+
+En conjunto, los análisis muestran que la fiabilidad de una prueba de diferencia de medias entre grupos depende mucho más de la presencia de sesgo en los ítems que del tamaño de la muestra manejado en este estudio. Aún duplicando el número de participantes, la sobre-estimación permanece prácticamente intacta si no se corrige el problema de los interceptos o al menos se diagnostica para controlarlo adecuadamente. 
+
+También es relevante el sesgo que se introduce con el modelo mimic que parte de evaluar las diferencias en un contexto de modelamiento de ecuaciones estructurales (SEM) cuando no se verifica apropiadamente un análisis de invarianza escalar (interceptos) o análisis DIF de ítems. Emplear este método puede incrementar aún más el sesgo en las diferencias de grupos empleadas.
+
+Por último, la pequeña diferencia entre el método `Factor score` y `Mean score` podría deberse a que en simulación únicamente se manipuló el parámetro de intercepto ($\nu$) y no las cargas factoriales diferentes entre grupos ($\lambda$).
+
