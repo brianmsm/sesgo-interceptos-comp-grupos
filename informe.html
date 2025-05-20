@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.3">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Evaluación del Impacto del Sesgo de Ítems en la Comparabilidad de Grupos: Un Estudio de Simulación con Puntuaciones Promediadas, Factor Scores y Modelos MIMIC.</title>
+<title>Impacto del Sesgo de Ítems en la Comparabilidad de Grupos: Simulación con Puntuaciones Promediadas, Factor Scores y Modelos MIMIC</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3272,7 +3272,7 @@ window.Quarto = {
   </ul><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="informe.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Evaluación del Impacto del Sesgo de Ítems en la Comparabilidad de Grupos: Un Estudio de Simulación con Puntuaciones Promediadas, Factor Scores y Modelos MIMIC.</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Impacto del Sesgo de Ítems en la Comparabilidad de Grupos: Simulación con Puntuaciones Promediadas, Factor Scores y Modelos MIMIC</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
 </div>
 
 
@@ -4951,9 +4951,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
 <div class="sourceCode" id="cb25" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">---</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="an">title:</span><span class="co"> &quot;Evaluación del Impacto del Sesgo de Ítems en la</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="co">    Comparabilidad de Grupos: Un Estudio de Simulación con </span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="co">    Puntuaciones Promediadas, Factor Scores y Modelos MIMIC.&quot;</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="an">title:</span><span class="co"> &quot;Impacto del Sesgo de Ítems en la</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="co">    Comparabilidad de Grupos: Simulación con </span></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co">    Puntuaciones Promediadas, Factor Scores y Modelos MIMIC&quot;</span></span>
 <span id="cb25-5"><a href="#cb25-5"></a><span class="an">authors:</span></span>
 <span id="cb25-6"><a href="#cb25-6"></a><span class="co">  - name: Brian Norman Peña-Calero</span></span>
 <span id="cb25-7"><a href="#cb25-7"></a><span class="co">    corresponding: true</span></span>
@@ -5001,340 +5001,348 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb25-49"><a href="#cb25-49"></a></span>
 <span id="cb25-50"><a href="#cb25-50"></a>Este proyecto de simulación investigará cómo la presencia de sesgo en los interceptos de los ítems afecta la comparabilidad de las puntuaciones entre dos grupos. Se examinará el impacto de diferentes magnitudes de sesgo de ítem y diferentes magnitudes de diferencias verdaderas en las medias latentes sobre tres métodos comunes de comparación: puntuaciones promediadas, factor scores derivados de Análisis Factorial Confirmatorio (AFC), y estimaciones de medias latentes de modelos MIMIC (Multiple Indicators Multiple Causes). El estudio también considerará el efecto del tamaño muestral en la precisión de estas comparaciones.</span>
 <span id="cb25-51"><a href="#cb25-51"></a></span>
-<span id="cb25-52"><a href="#cb25-52"></a><span class="fu"># Objetivos</span></span>
+<span id="cb25-52"><a href="#cb25-52"></a>:::: {.content-visible when-format=&quot;pdf&quot;}</span>
 <span id="cb25-53"><a href="#cb25-53"></a></span>
-<span id="cb25-54"><a href="#cb25-54"></a><span class="fu">## Objetivo General</span></span>
-<span id="cb25-55"><a href="#cb25-55"></a></span>
-<span id="cb25-56"><a href="#cb25-56"></a>Evaluar cuantitativamente cómo diferentes magnitudes de sesgo en los interceptos de los ítems y diferentes niveles de diferencia verdadera en las medias latentes entre dos grupos afectan la comparabilidad de las puntuaciones estimadas mediante promedio, factor scores y modelos MIMIC, bajo distintas condiciones de tamaño muestral.</span>
+<span id="cb25-54"><a href="#cb25-54"></a>::: {.callout-important}</span>
+<span id="cb25-55"><a href="#cb25-55"></a>Una versión de este informe puede ser encontrada en línea en <span class="co">[</span><span class="ot">https://brianmsm.github.io/sesgo-interceptos-comp-grupos/reporte.html</span><span class="co">](https://brianmsm.github.io/sesgo-interceptos-comp-grupos/reporte.html)</span>.</span>
+<span id="cb25-56"><a href="#cb25-56"></a>:::</span>
 <span id="cb25-57"><a href="#cb25-57"></a></span>
-<span id="cb25-58"><a href="#cb25-58"></a><span class="fu">## Objetivos Específicos</span></span>
+<span id="cb25-58"><a href="#cb25-58"></a>::::</span>
 <span id="cb25-59"><a href="#cb25-59"></a></span>
-<span id="cb25-60"><a href="#cb25-60"></a>a)  Determinar el grado de sesgo (en términos de *d* de Cohen) introducido en la comparación de medias grupales por diferentes niveles de sesgo en los interceptos de los ítems cuando no existe una diferencia real en la media latente entre los grupos.</span>
-<span id="cb25-61"><a href="#cb25-61"></a>b)  Evaluar cómo el sesgo en los interceptos de los ítems distorsiona la estimación de diferencias de medias latentes verdaderas conocidas (pequeñas, medianas y grandes) entre los grupos.</span>
-<span id="cb25-62"><a href="#cb25-62"></a>c)  Comparar la robustez y precisión de las puntuaciones promediadas, los factor scores (obtenidos de <span class="in">`lavaan`</span> asumiendo invarianza escalar) y las estimaciones de medias latentes de modelos MIMIC frente al sesgo de los ítems.</span>
-<span id="cb25-63"><a href="#cb25-63"></a>d)  Investigar la influencia del tamaño muestral (N=400 vs. N=800 total) en la magnitud del sesgo observado y la precisión de las estimaciones de las diferencias de medias.</span>
-<span id="cb25-64"><a href="#cb25-64"></a></span>
-<span id="cb25-65"><a href="#cb25-65"></a><span class="fu"># Diseño de Simulación</span></span>
-<span id="cb25-66"><a href="#cb25-66"></a></span>
-<span id="cb25-67"><a href="#cb25-67"></a><span class="ss">1.  </span>Modelo de Generación de Datos Base:</span>
-<span id="cb25-68"><a href="#cb25-68"></a></span>
-<span id="cb25-69"><a href="#cb25-69"></a><span class="ss">-   </span>Estructura Factorial: 1 factor común.</span>
-<span id="cb25-70"><a href="#cb25-70"></a><span class="ss">-   </span>Número de Ítems: 10 ítems continuos con distribución normal.</span>
-<span id="cb25-71"><a href="#cb25-71"></a><span class="ss">-   </span>Cargas Factoriales ($\lambda$): Promedio de 0.7 +- 0.10.</span>
-<span id="cb25-72"><a href="#cb25-72"></a><span class="ss">-   </span>Varianza del Factor Latente ($\Psi$): Fijada a 1 en el grupo de referencia y para la generación de datos</span>
-<span id="cb25-73"><a href="#cb25-73"></a><span class="ss">-   </span>Interceptos de los Ítems ($\nu$) Base: Fijados a 0 para todos los ítems en el grupo de referencia.</span>
-<span id="cb25-74"><a href="#cb25-74"></a><span class="ss">-   </span>Varianzas de Error de los Ítems (θ): Se simula en situación estandarizada por lo que $\theta_j = 1 - \lambda_j^2$.</span>
-<span id="cb25-75"><a href="#cb25-75"></a></span>
-<span id="cb25-76"><a href="#cb25-76"></a><span class="ss">2.  </span>Variables Independientes (Factores de la Simulación):</span>
-<span id="cb25-77"><a href="#cb25-77"></a></span>
-<span id="cb25-78"><a href="#cb25-78"></a>    | Factor | Niveles | Descripción del Nivel |</span>
-<span id="cb25-79"><a href="#cb25-79"></a>    |:---------------------|:-----------------------|:--------------------------|</span>
-<span id="cb25-80"><a href="#cb25-80"></a>    | 1<span class="sc">\.</span> Diferencia Real Medias Latentes ($\Delta \theta$) | 4 niveles: 0, 0.2, 0.5, 0.8 | Nula, Pequeña, Mediana, Grande (en unidades de *d* de Cohen) |</span>
-<span id="cb25-81"><a href="#cb25-81"></a>    | 2<span class="sc">\.</span> Magnitud Sesgo Intercepto Ítem ($\Delta \nu$)<span class="sc">\*</span> | 4 niveles: 0, +0.2, +0.5, +0.8 | Nulo, Pequeño, Mediano, Grande (en unidades de DE del ítem) |</span>
-<span id="cb25-82"><a href="#cb25-82"></a>    | 3<span class="sc">\.</span> Tamaño Muestral Total (N) | 2 niveles: 400, 800 | 200 por grupo, 400 por grupo |</span>
+<span id="cb25-60"><a href="#cb25-60"></a><span class="fu"># Objetivos</span></span>
+<span id="cb25-61"><a href="#cb25-61"></a></span>
+<span id="cb25-62"><a href="#cb25-62"></a><span class="fu">## Objetivo General</span></span>
+<span id="cb25-63"><a href="#cb25-63"></a></span>
+<span id="cb25-64"><a href="#cb25-64"></a>Evaluar cuantitativamente cómo diferentes magnitudes de sesgo en los interceptos de los ítems y diferentes niveles de diferencia verdadera en las medias latentes entre dos grupos afectan la comparabilidad de las puntuaciones estimadas mediante promedio, factor scores y modelos MIMIC, bajo distintas condiciones de tamaño muestral.</span>
+<span id="cb25-65"><a href="#cb25-65"></a></span>
+<span id="cb25-66"><a href="#cb25-66"></a><span class="fu">## Objetivos Específicos</span></span>
+<span id="cb25-67"><a href="#cb25-67"></a></span>
+<span id="cb25-68"><a href="#cb25-68"></a>a)  Determinar el grado de sesgo (en términos de *d* de Cohen) introducido en la comparación de medias grupales por diferentes niveles de sesgo en los interceptos de los ítems cuando no existe una diferencia real en la media latente entre los grupos.</span>
+<span id="cb25-69"><a href="#cb25-69"></a>b)  Evaluar cómo el sesgo en los interceptos de los ítems distorsiona la estimación de diferencias de medias latentes verdaderas conocidas (pequeñas, medianas y grandes) entre los grupos.</span>
+<span id="cb25-70"><a href="#cb25-70"></a>c)  Comparar la robustez y precisión de las puntuaciones promediadas, los factor scores (obtenidos de <span class="in">`lavaan`</span> asumiendo invarianza escalar) y las estimaciones de medias latentes de modelos MIMIC frente al sesgo de los ítems.</span>
+<span id="cb25-71"><a href="#cb25-71"></a>d)  Investigar la influencia del tamaño muestral (N=400 vs. N=800 total) en la magnitud del sesgo observado y la precisión de las estimaciones de las diferencias de medias.</span>
+<span id="cb25-72"><a href="#cb25-72"></a></span>
+<span id="cb25-73"><a href="#cb25-73"></a><span class="fu"># Diseño de Simulación</span></span>
+<span id="cb25-74"><a href="#cb25-74"></a></span>
+<span id="cb25-75"><a href="#cb25-75"></a><span class="ss">1.  </span>Modelo de Generación de Datos Base:</span>
+<span id="cb25-76"><a href="#cb25-76"></a></span>
+<span id="cb25-77"><a href="#cb25-77"></a><span class="ss">-   </span>Estructura Factorial: 1 factor común.</span>
+<span id="cb25-78"><a href="#cb25-78"></a><span class="ss">-   </span>Número de Ítems: 10 ítems continuos con distribución normal.</span>
+<span id="cb25-79"><a href="#cb25-79"></a><span class="ss">-   </span>Cargas Factoriales ($\lambda$): Promedio de 0.7 +- 0.10.</span>
+<span id="cb25-80"><a href="#cb25-80"></a><span class="ss">-   </span>Varianza del Factor Latente ($\Psi$): Fijada a 1 en el grupo de referencia y para la generación de datos</span>
+<span id="cb25-81"><a href="#cb25-81"></a><span class="ss">-   </span>Interceptos de los Ítems ($\nu$) Base: Fijados a 0 para todos los ítems en el grupo de referencia.</span>
+<span id="cb25-82"><a href="#cb25-82"></a><span class="ss">-   </span>Varianzas de Error de los Ítems (θ): Se simula en situación estandarizada por lo que $\theta_j = 1 - \lambda_j^2$.</span>
 <span id="cb25-83"><a href="#cb25-83"></a></span>
-<span id="cb25-84"><a href="#cb25-84"></a><span class="ss">    -   </span>**Nota sobre** $\Delta \nu$: El sesgo en el intercepto se introducirá en el **30% de los ítems (es decir, 3 ítems)**. Estos 3 ítems serán siempre los mismos a lo largo de todas las condiciones. El valor de $\Delta \nu$ indica la magnitud de la diferencia en el intercepto de estos 3 ítems para el Grupo Focal en comparación con el Grupo de Referencia (favoreciendo al Grupo Focal, $\nu_{item,Focal} = \nu_{item,Ref} + \Delta \nu$.</span>
+<span id="cb25-84"><a href="#cb25-84"></a><span class="ss">2.  </span>Variables Independientes (Factores de la Simulación):</span>
 <span id="cb25-85"><a href="#cb25-85"></a></span>
-<span id="cb25-86"><a href="#cb25-86"></a><span class="ss">3.  </span>Número Total de Condiciones de Simulación: 4 ($\Delta \theta$) x 4 ($\Delta \nu$) x 2 (N) = **32 condiciones**.</span>
-<span id="cb25-87"><a href="#cb25-87"></a></span>
-<span id="cb25-88"><a href="#cb25-88"></a><span class="ss">4.  </span>Número de Replicaciones por Condición: 500</span>
-<span id="cb25-89"><a href="#cb25-89"></a></span>
-<span id="cb25-90"><a href="#cb25-90"></a><span class="ss">5.  </span>Análisis para evaluación:</span>
+<span id="cb25-86"><a href="#cb25-86"></a>    | Factor | Niveles | Descripción del Nivel |</span>
+<span id="cb25-87"><a href="#cb25-87"></a>    |:---------------------|:-----------------------|:--------------------------|</span>
+<span id="cb25-88"><a href="#cb25-88"></a>    | 1<span class="sc">\.</span> Diferencia Real Medias Latentes ($\Delta \theta$) | 4 niveles: 0, 0.2, 0.5, 0.8 | Nula, Pequeña, Mediana, Grande (en unidades de *d* de Cohen) |</span>
+<span id="cb25-89"><a href="#cb25-89"></a>    | 2<span class="sc">\.</span> Magnitud Sesgo Intercepto Ítem ($\Delta \nu$)<span class="sc">\*</span> | 4 niveles: 0, +0.2, +0.5, +0.8 | Nulo, Pequeño, Mediano, Grande (en unidades de DE del ítem) |</span>
+<span id="cb25-90"><a href="#cb25-90"></a>    | 3<span class="sc">\.</span> Tamaño Muestral Total (N) | 2 niveles: 400, 800 | 200 por grupo, 400 por grupo |</span>
 <span id="cb25-91"><a href="#cb25-91"></a></span>
-<span id="cb25-92"><a href="#cb25-92"></a><span class="ss">    -   </span>Para Puntuaciones Sumadas (o Promedio): *d* de Cohen observada para la diferencia de medias entre el Grupo Focal y el Grupo de Referencia.</span>
-<span id="cb25-93"><a href="#cb25-93"></a><span class="ss">    -   </span>Para Factor Scores (de <span class="in">`lavaan`</span>): *d* de Cohen observada para la diferencia de medias de los factor scores entre grupos (estimados de un AFC multigrupo que asume invarianza escalar).</span>
-<span id="cb25-94"><a href="#cb25-94"></a><span class="ss">    -   </span>Para Modelos MIMIC: *d* de Cohen observada para la diferencia estimada en la media del factor latente entre grupos.</span>
-<span id="cb25-95"><a href="#cb25-95"></a><span class="ss">    -   </span>Métrica de Sesgo Primaria: Para todas las *d* observadas: $Sesgo = d_{observada} - d_{verdadera}$ (donde $d_{verdadera}$ es el $\Delta \theta$ de la condición).</span>
-<span id="cb25-96"><a href="#cb25-96"></a>    </span>
-<span id="cb25-97"><a href="#cb25-97"></a>    </span>
-<span id="cb25-98"><a href="#cb25-98"></a><span class="fu"># Modelo poblacional y manipulación del sesgo</span></span>
+<span id="cb25-92"><a href="#cb25-92"></a><span class="ss">    -   </span>**Nota sobre** $\Delta \nu$: El sesgo en el intercepto se introducirá en el **30% de los ítems (es decir, 3 ítems)**. Estos 3 ítems serán siempre los mismos a lo largo de todas las condiciones. El valor de $\Delta \nu$ indica la magnitud de la diferencia en el intercepto de estos 3 ítems para el Grupo Focal en comparación con el Grupo de Referencia (favoreciendo al Grupo Focal, $\nu_{item,Focal} = \nu_{item,Ref} + \Delta \nu$.</span>
+<span id="cb25-93"><a href="#cb25-93"></a></span>
+<span id="cb25-94"><a href="#cb25-94"></a><span class="ss">3.  </span>Número Total de Condiciones de Simulación: 4 ($\Delta \theta$) x 4 ($\Delta \nu$) x 2 (N) = **32 condiciones**.</span>
+<span id="cb25-95"><a href="#cb25-95"></a></span>
+<span id="cb25-96"><a href="#cb25-96"></a><span class="ss">4.  </span>Número de Replicaciones por Condición: 500</span>
+<span id="cb25-97"><a href="#cb25-97"></a></span>
+<span id="cb25-98"><a href="#cb25-98"></a><span class="ss">5.  </span>Análisis para evaluación:</span>
 <span id="cb25-99"><a href="#cb25-99"></a></span>
-<span id="cb25-100"><a href="#cb25-100"></a>La variable observada del ítem $j$ para la persona $i$ se genera a partir de un modelo de medición unidimensional:</span>
-<span id="cb25-101"><a href="#cb25-101"></a></span>
-<span id="cb25-102"><a href="#cb25-102"></a>$$</span>
-<span id="cb25-103"><a href="#cb25-103"></a>X_{ij} \;=\; \tau_{j}^{(g_i)} \;+\; \lambda_{j}\,\theta_{i}^{(g_i)} \;+\; \varepsilon_{ij},</span>
-<span id="cb25-104"><a href="#cb25-104"></a>\qquad  j = 1,\dots,10,\; i = 1,\dots,n,</span>
-<span id="cb25-105"><a href="#cb25-105"></a>$$</span>
-<span id="cb25-106"><a href="#cb25-106"></a></span>
-<span id="cb25-107"><a href="#cb25-107"></a>donde</span>
-<span id="cb25-108"><a href="#cb25-108"></a></span>
-<span id="cb25-109"><a href="#cb25-109"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
-<span id="cb25-110"><a href="#cb25-110"></a><span class="pp">|</span> Símbolo                                                  <span class="pp">|</span> Significado                                                                     <span class="pp">|</span> Manipulación en la simulación                                                                                                     <span class="pp">|</span></span>
-<span id="cb25-111"><a href="#cb25-111"></a>+========================================================<span class="al">==+=================================================================================+==</span>=================================================================================================================================+</span>
-<span id="cb25-112"><a href="#cb25-112"></a><span class="pp">|</span> $\theta_{i}^{(g)} \sim \mathcal{N}(\mu_\theta^{(g)}, 1)$ <span class="pp">|</span> puntuación latente del individuo $i$ en el grupo $g$                            <span class="pp">|</span> la media se fija a $\mu_\theta^{(0)} = 0$ y se varía $$\Delta\theta = \mu_\theta^{(1)} - \mu_\theta^{(0)} \in <span class="sc">\{</span>0,0.2,0.5,0.8<span class="sc">\}</span>$$ <span class="pp">|</span></span>
-<span id="cb25-113"><a href="#cb25-113"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
-<span id="cb25-114"><a href="#cb25-114"></a><span class="pp">|</span> $\lambda_{j}$                                            <span class="pp">|</span> carga factorial del ítem $j$                                                    <span class="pp">|</span> muestreadas una vez de $U(0.60,0.80)$ y **no se manipulan**                                                                       <span class="pp">|</span></span>
-<span id="cb25-115"><a href="#cb25-115"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
-<span id="cb25-116"><a href="#cb25-116"></a><span class="pp">|</span> $\tau_{j}^{(g)}$                                         <span class="pp">|</span> intercepto del ítem $j$ en el grupo $g$                                         <span class="pp">|</span> para los ítems $3,6,9$ del **grupo focal** se añade\                                                                              <span class="pp">|</span></span>
-<span id="cb25-117"><a href="#cb25-117"></a><span class="pp">|</span>                                                          <span class="pp">|</span>                                                                                 <span class="pp">|</span> $$\Delta\nu \in <span class="sc">\{</span>0,0.2,0.5,0.8<span class="sc">\}</span>$$ $\Rightarrow$ $\tau_{j}^{(1)} = \tau_{j}^{(0)} + \Delta\nu$                                   <span class="pp">|</span></span>
-<span id="cb25-118"><a href="#cb25-118"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
-<span id="cb25-119"><a href="#cb25-119"></a><span class="pp">|</span> $\varepsilon_{ij}$                                       <span class="pp">|</span> error residual, $\varepsilon_{ij}\sim\mathcal{N}(0,\ \sigma_{\varepsilon j}^2)$ <span class="pp">|</span> $\sigma_{\varepsilon j}^2 = 1 - \lambda_{j}^2$ para que $\operatorname{Var}(X_{ij}) = 1$                                          <span class="pp">|</span></span>
-<span id="cb25-120"><a href="#cb25-120"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
-<span id="cb25-121"><a href="#cb25-121"></a></span>
-<span id="cb25-122"><a href="#cb25-122"></a>La manipulación experimental se concentra, por tanto, **exclusivamente en los interceptos** de tres ítems — provocando *Differential Intercept Functioning* — y en la media latente $\Delta\theta$.\</span>
-<span id="cb25-123"><a href="#cb25-123"></a>Todos los demás parámetros permanecen invariantes entre los dos grupos.</span>
-<span id="cb25-124"><a href="#cb25-124"></a></span>
-<span id="cb25-125"><a href="#cb25-125"></a><span class="fu"># Estadísticos de evaluación</span></span>
-<span id="cb25-126"><a href="#cb25-126"></a></span>
-<span id="cb25-127"><a href="#cb25-127"></a>Para cada réplica se calculan:</span>
-<span id="cb25-128"><a href="#cb25-128"></a></span>
-<span id="cb25-129"><a href="#cb25-129"></a><span class="ss">-   </span>Sesgo de $d$:</span>
-<span id="cb25-130"><a href="#cb25-130"></a></span>
-<span id="cb25-131"><a href="#cb25-131"></a>    $$</span>
-<span id="cb25-132"><a href="#cb25-132"></a>      e_r = \hat{d}_r - d_{\text{true}}</span>
-<span id="cb25-133"><a href="#cb25-133"></a>    $$</span>
+<span id="cb25-100"><a href="#cb25-100"></a><span class="ss">    -   </span>Para Puntuaciones Sumadas (o Promedio): *d* de Cohen observada para la diferencia de medias entre el Grupo Focal y el Grupo de Referencia.</span>
+<span id="cb25-101"><a href="#cb25-101"></a><span class="ss">    -   </span>Para Factor Scores (de <span class="in">`lavaan`</span>): *d* de Cohen observada para la diferencia de medias de los factor scores entre grupos (estimados de un AFC multigrupo que asume invarianza escalar).</span>
+<span id="cb25-102"><a href="#cb25-102"></a><span class="ss">    -   </span>Para Modelos MIMIC: *d* de Cohen observada para la diferencia estimada en la media del factor latente entre grupos.</span>
+<span id="cb25-103"><a href="#cb25-103"></a><span class="ss">    -   </span>Métrica de Sesgo Primaria: Para todas las *d* observadas: $Sesgo = d_{observada} - d_{verdadera}$ (donde $d_{verdadera}$ es el $\Delta \theta$ de la condición).</span>
+<span id="cb25-104"><a href="#cb25-104"></a>    </span>
+<span id="cb25-105"><a href="#cb25-105"></a>    </span>
+<span id="cb25-106"><a href="#cb25-106"></a><span class="fu"># Modelo poblacional y manipulación del sesgo</span></span>
+<span id="cb25-107"><a href="#cb25-107"></a></span>
+<span id="cb25-108"><a href="#cb25-108"></a>La variable observada del ítem $j$ para la persona $i$ se genera a partir de un modelo de medición unidimensional:</span>
+<span id="cb25-109"><a href="#cb25-109"></a></span>
+<span id="cb25-110"><a href="#cb25-110"></a>$$</span>
+<span id="cb25-111"><a href="#cb25-111"></a>X_{ij} \;=\; \tau_{j}^{(g_i)} \;+\; \lambda_{j}\,\theta_{i}^{(g_i)} \;+\; \varepsilon_{ij},</span>
+<span id="cb25-112"><a href="#cb25-112"></a>\qquad  j = 1,\dots,10,\; i = 1,\dots,n,</span>
+<span id="cb25-113"><a href="#cb25-113"></a>$$</span>
+<span id="cb25-114"><a href="#cb25-114"></a></span>
+<span id="cb25-115"><a href="#cb25-115"></a>donde</span>
+<span id="cb25-116"><a href="#cb25-116"></a></span>
+<span id="cb25-117"><a href="#cb25-117"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb25-118"><a href="#cb25-118"></a><span class="pp">|</span> Símbolo                                                  <span class="pp">|</span> Significado                                                                     <span class="pp">|</span> Manipulación en la simulación                                                                                                     <span class="pp">|</span></span>
+<span id="cb25-119"><a href="#cb25-119"></a>+========================================================<span class="al">==+=================================================================================+==</span>=================================================================================================================================+</span>
+<span id="cb25-120"><a href="#cb25-120"></a><span class="pp">|</span> $\theta_{i}^{(g)} \sim \mathcal{N}(\mu_\theta^{(g)}, 1)$ <span class="pp">|</span> puntuación latente del individuo $i$ en el grupo $g$                            <span class="pp">|</span> la media se fija a $\mu_\theta^{(0)} = 0$ y se varía $$\Delta\theta = \mu_\theta^{(1)} - \mu_\theta^{(0)} \in <span class="sc">\{</span>0,0.2,0.5,0.8<span class="sc">\}</span>$$ <span class="pp">|</span></span>
+<span id="cb25-121"><a href="#cb25-121"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb25-122"><a href="#cb25-122"></a><span class="pp">|</span> $\lambda_{j}$                                            <span class="pp">|</span> carga factorial del ítem $j$                                                    <span class="pp">|</span> muestreadas una vez de $U(0.60,0.80)$ y **no se manipulan**                                                                       <span class="pp">|</span></span>
+<span id="cb25-123"><a href="#cb25-123"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb25-124"><a href="#cb25-124"></a><span class="pp">|</span> $\tau_{j}^{(g)}$                                         <span class="pp">|</span> intercepto del ítem $j$ en el grupo $g$                                         <span class="pp">|</span> para los ítems $3,6,9$ del **grupo focal** se añade\                                                                              <span class="pp">|</span></span>
+<span id="cb25-125"><a href="#cb25-125"></a><span class="pp">|</span>                                                          <span class="pp">|</span>                                                                                 <span class="pp">|</span> $$\Delta\nu \in <span class="sc">\{</span>0,0.2,0.5,0.8<span class="sc">\}</span>$$ $\Rightarrow$ $\tau_{j}^{(1)} = \tau_{j}^{(0)} + \Delta\nu$                                   <span class="pp">|</span></span>
+<span id="cb25-126"><a href="#cb25-126"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb25-127"><a href="#cb25-127"></a><span class="pp">|</span> $\varepsilon_{ij}$                                       <span class="pp">|</span> error residual, $\varepsilon_{ij}\sim\mathcal{N}(0,\ \sigma_{\varepsilon j}^2)$ <span class="pp">|</span> $\sigma_{\varepsilon j}^2 = 1 - \lambda_{j}^2$ para que $\operatorname{Var}(X_{ij}) = 1$                                          <span class="pp">|</span></span>
+<span id="cb25-128"><a href="#cb25-128"></a>+----------------------------------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+</span>
+<span id="cb25-129"><a href="#cb25-129"></a></span>
+<span id="cb25-130"><a href="#cb25-130"></a>La manipulación experimental se concentra, por tanto, **exclusivamente en los interceptos** de tres ítems — provocando *Differential Intercept Functioning* — y en la media latente $\Delta\theta$.\</span>
+<span id="cb25-131"><a href="#cb25-131"></a>Todos los demás parámetros permanecen invariantes entre los dos grupos.</span>
+<span id="cb25-132"><a href="#cb25-132"></a></span>
+<span id="cb25-133"><a href="#cb25-133"></a><span class="fu"># Estadísticos de evaluación</span></span>
 <span id="cb25-134"><a href="#cb25-134"></a></span>
-<span id="cb25-135"><a href="#cb25-135"></a><span class="ss">-   </span>Raíz del error cuadrático medio (RMSE):</span>
+<span id="cb25-135"><a href="#cb25-135"></a>Para cada réplica se calculan:</span>
 <span id="cb25-136"><a href="#cb25-136"></a></span>
-<span id="cb25-137"><a href="#cb25-137"></a>    $$</span>
-<span id="cb25-138"><a href="#cb25-138"></a>      \text{RMSE} = \sqrt{\; \frac1{R}\sum_{r=1}^R e_r^{\,2}}</span>
+<span id="cb25-137"><a href="#cb25-137"></a><span class="ss">-   </span>Sesgo de $d$:</span>
+<span id="cb25-138"><a href="#cb25-138"></a></span>
 <span id="cb25-139"><a href="#cb25-139"></a>    $$</span>
-<span id="cb25-140"><a href="#cb25-140"></a></span>
-<span id="cb25-141"><a href="#cb25-141"></a>y sus **intervalos empíricos al 95 %** se obtienen como los cuantiles 2.5 % y 97.5 % de la distribución de $e_r$ (o $|e_r|$ para RMSE) a lo largo de las $R = 500$ réplicas por condición.</span>
+<span id="cb25-140"><a href="#cb25-140"></a>      e_r = \hat{d}_r - d_{\text{true}}</span>
+<span id="cb25-141"><a href="#cb25-141"></a>    $$</span>
 <span id="cb25-142"><a href="#cb25-142"></a></span>
-<span id="cb25-143"><a href="#cb25-143"></a><span class="fu"># Simulación</span></span>
+<span id="cb25-143"><a href="#cb25-143"></a><span class="ss">-   </span>Raíz del error cuadrático medio (RMSE):</span>
 <span id="cb25-144"><a href="#cb25-144"></a></span>
-<span id="cb25-145"><a href="#cb25-145"></a>La codificación de la simulación se organizó en **módulos** dentro de la carpeta <span class="in">`03_functions/`</span>.  </span>
-<span id="cb25-146"><a href="#cb25-146"></a>El árbol completo se muestra a continuación:</span>
-<span id="cb25-147"><a href="#cb25-147"></a></span>
-<span id="cb25-150"><a href="#cb25-150"></a><span class="in">```{r}</span></span>
-<span id="cb25-151"><a href="#cb25-151"></a>fs<span class="sc">::</span><span class="fu">dir_tree</span>(<span class="st">&quot;03_functions/&quot;</span>)</span>
-<span id="cb25-152"><a href="#cb25-152"></a><span class="in">```</span></span>
-<span id="cb25-153"><a href="#cb25-153"></a></span>
-<span id="cb25-154"><a href="#cb25-154"></a>Además, todo ello se encuentra almacenado en el repositorio Github: <span class="co">[</span><span class="ot">https://github.com/brianmsm/sesgo-interceptos-comp-grupos</span><span class="co">](https://github.com/brianmsm/sesgo-interceptos-comp-grupos)</span>.</span>
+<span id="cb25-145"><a href="#cb25-145"></a>    $$</span>
+<span id="cb25-146"><a href="#cb25-146"></a>      \text{RMSE} = \sqrt{\; \frac1{R}\sum_{r=1}^R e_r^{\,2}}</span>
+<span id="cb25-147"><a href="#cb25-147"></a>    $$</span>
+<span id="cb25-148"><a href="#cb25-148"></a></span>
+<span id="cb25-149"><a href="#cb25-149"></a>y sus **intervalos empíricos al 95 %** se obtienen como los cuantiles 2.5 % y 97.5 % de la distribución de $e_r$ (o $|e_r|$ para RMSE) a lo largo de las $R = 500$ réplicas por condición.</span>
+<span id="cb25-150"><a href="#cb25-150"></a></span>
+<span id="cb25-151"><a href="#cb25-151"></a><span class="fu"># Simulación</span></span>
+<span id="cb25-152"><a href="#cb25-152"></a></span>
+<span id="cb25-153"><a href="#cb25-153"></a>La codificación de la simulación se organizó en **módulos** dentro de la carpeta <span class="in">`03_functions/`</span>.  </span>
+<span id="cb25-154"><a href="#cb25-154"></a>El árbol completo se muestra a continuación:</span>
 <span id="cb25-155"><a href="#cb25-155"></a></span>
-<span id="cb25-156"><a href="#cb25-156"></a><span class="fu">## Config</span></span>
-<span id="cb25-157"><a href="#cb25-157"></a></span>
-<span id="cb25-158"><a href="#cb25-158"></a>Define **todas** las condiciones de simulación (niveles de $\Delta \theta$ y $\Delta \nu$), tamaños muestrales y réplicas), crea la estructura de carpetas del proyecto y detecta los núcleos disponibles.  </span>
-<span id="cb25-159"><a href="#cb25-159"></a>Finalmente guarda el objeto <span class="in">`config_sim.rds`</span>, que actúa como punto único de referencia en los demás scripts.</span>
-<span id="cb25-160"><a href="#cb25-160"></a></span>
-<span id="cb25-163"><a href="#cb25-163"></a><span class="in">```{r}</span></span>
-<span id="cb25-164"><a href="#cb25-164"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">00</span>_config.R <span class="sc">&gt;</span>}}</span>
-<span id="cb25-165"><a href="#cb25-165"></a><span class="in">```</span></span>
-<span id="cb25-166"><a href="#cb25-166"></a></span>
-<span id="cb25-167"><a href="#cb25-167"></a>El archivo de configuración contiene:</span>
+<span id="cb25-158"><a href="#cb25-158"></a><span class="in">```{r}</span></span>
+<span id="cb25-159"><a href="#cb25-159"></a>fs<span class="sc">::</span><span class="fu">dir_tree</span>(<span class="st">&quot;03_functions/&quot;</span>)</span>
+<span id="cb25-160"><a href="#cb25-160"></a><span class="in">```</span></span>
+<span id="cb25-161"><a href="#cb25-161"></a></span>
+<span id="cb25-162"><a href="#cb25-162"></a>Además, todo ello se encuentra almacenado en el repositorio Github: <span class="co">[</span><span class="ot">https://github.com/brianmsm/sesgo-interceptos-comp-grupos</span><span class="co">](https://github.com/brianmsm/sesgo-interceptos-comp-grupos)</span>.</span>
+<span id="cb25-163"><a href="#cb25-163"></a></span>
+<span id="cb25-164"><a href="#cb25-164"></a><span class="fu">## Config</span></span>
+<span id="cb25-165"><a href="#cb25-165"></a></span>
+<span id="cb25-166"><a href="#cb25-166"></a>Define **todas** las condiciones de simulación (niveles de $\Delta \theta$ y $\Delta \nu$), tamaños muestrales y réplicas), crea la estructura de carpetas del proyecto y detecta los núcleos disponibles.  </span>
+<span id="cb25-167"><a href="#cb25-167"></a>Finalmente guarda el objeto <span class="in">`config_sim.rds`</span>, que actúa como punto único de referencia en los demás scripts.</span>
 <span id="cb25-168"><a href="#cb25-168"></a></span>
 <span id="cb25-171"><a href="#cb25-171"></a><span class="in">```{r}</span></span>
-<span id="cb25-172"><a href="#cb25-172"></a>config</span>
+<span id="cb25-172"><a href="#cb25-172"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">00</span>_config.R <span class="sc">&gt;</span>}}</span>
 <span id="cb25-173"><a href="#cb25-173"></a><span class="in">```</span></span>
 <span id="cb25-174"><a href="#cb25-174"></a></span>
-<span id="cb25-175"><a href="#cb25-175"></a><span class="fu">## Helpers</span></span>
+<span id="cb25-175"><a href="#cb25-175"></a>El archivo de configuración contiene:</span>
 <span id="cb25-176"><a href="#cb25-176"></a></span>
-<span id="cb25-177"><a href="#cb25-177"></a>Funciones utilitarias comunes:</span>
-<span id="cb25-178"><a href="#cb25-178"></a></span>
-<span id="cb25-179"><a href="#cb25-179"></a><span class="ss">* </span><span class="in">`make_lambda()`</span> — genera las cargas $\lambda_j$ ~ $U(0.60, 0.80)$.  </span>
-<span id="cb25-180"><a href="#cb25-180"></a><span class="ss">* </span><span class="in">`cohen_d()`</span> y <span class="in">`z_score()`</span> — estadísticas básicas.  </span>
-<span id="cb25-181"><a href="#cb25-181"></a><span class="ss">* </span><span class="in">`safe_cfa()`</span> / <span class="in">`safe_sem()`</span> — wrappers que silencian ‘warnings’ de **lavaan**.  </span>
+<span id="cb25-179"><a href="#cb25-179"></a><span class="in">```{r}</span></span>
+<span id="cb25-180"><a href="#cb25-180"></a>config</span>
+<span id="cb25-181"><a href="#cb25-181"></a><span class="in">```</span></span>
 <span id="cb25-182"><a href="#cb25-182"></a></span>
-<span id="cb25-185"><a href="#cb25-185"></a><span class="in">```{r}</span></span>
-<span id="cb25-186"><a href="#cb25-186"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">01</span>_helpers.R <span class="sc">&gt;</span>}}</span>
-<span id="cb25-187"><a href="#cb25-187"></a><span class="in">```</span></span>
-<span id="cb25-188"><a href="#cb25-188"></a></span>
-<span id="cb25-189"><a href="#cb25-189"></a><span class="fu">## Generator</span></span>
+<span id="cb25-183"><a href="#cb25-183"></a><span class="fu">## Helpers</span></span>
+<span id="cb25-184"><a href="#cb25-184"></a></span>
+<span id="cb25-185"><a href="#cb25-185"></a>Funciones utilitarias comunes:</span>
+<span id="cb25-186"><a href="#cb25-186"></a></span>
+<span id="cb25-187"><a href="#cb25-187"></a><span class="ss">* </span><span class="in">`make_lambda()`</span> — genera las cargas $\lambda_j$ ~ $U(0.60, 0.80)$.  </span>
+<span id="cb25-188"><a href="#cb25-188"></a><span class="ss">* </span><span class="in">`cohen_d()`</span> y <span class="in">`z_score()`</span> — estadísticas básicas.  </span>
+<span id="cb25-189"><a href="#cb25-189"></a><span class="ss">* </span><span class="in">`safe_cfa()`</span> / <span class="in">`safe_sem()`</span> — wrappers que silencian ‘warnings’ de **lavaan**.  </span>
 <span id="cb25-190"><a href="#cb25-190"></a></span>
-<span id="cb25-191"><a href="#cb25-191"></a>Implementa dos motores de simulación:</span>
-<span id="cb25-192"><a href="#cb25-192"></a></span>
-<span id="cb25-193"><a href="#cb25-193"></a><span class="ss">1. </span>**`manual_generator()`** — más rápido y transparente: añade el sesgo ($\Delta \nu$) sólo a los ítems 3-6-9 del grupo focal.  </span>
-<span id="cb25-194"><a href="#cb25-194"></a><span class="ss">2. </span>**`lavaan_generator()`** — usa <span class="in">`simulateData()`</span> por si se quiere reproducir exactamente la matriz poblacional.</span>
-<span id="cb25-195"><a href="#cb25-195"></a></span>
-<span id="cb25-196"><a href="#cb25-196"></a>Función principal <span class="in">`generate_data()`</span>, con argumento <span class="in">`engine = &quot;manual&quot; | &quot;lavaan&quot;`</span>.</span>
-<span id="cb25-197"><a href="#cb25-197"></a></span>
-<span id="cb25-200"><a href="#cb25-200"></a><span class="in">```{r}</span></span>
-<span id="cb25-201"><a href="#cb25-201"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">02</span>_generator.R <span class="sc">&gt;</span>}}</span>
-<span id="cb25-202"><a href="#cb25-202"></a><span class="in">```</span></span>
+<span id="cb25-193"><a href="#cb25-193"></a><span class="in">```{r}</span></span>
+<span id="cb25-194"><a href="#cb25-194"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">01</span>_helpers.R <span class="sc">&gt;</span>}}</span>
+<span id="cb25-195"><a href="#cb25-195"></a><span class="in">```</span></span>
+<span id="cb25-196"><a href="#cb25-196"></a></span>
+<span id="cb25-197"><a href="#cb25-197"></a><span class="fu">## Generator</span></span>
+<span id="cb25-198"><a href="#cb25-198"></a></span>
+<span id="cb25-199"><a href="#cb25-199"></a>Implementa dos motores de simulación:</span>
+<span id="cb25-200"><a href="#cb25-200"></a></span>
+<span id="cb25-201"><a href="#cb25-201"></a><span class="ss">1. </span>**`manual_generator()`** — más rápido y transparente: añade el sesgo ($\Delta \nu$) sólo a los ítems 3-6-9 del grupo focal.  </span>
+<span id="cb25-202"><a href="#cb25-202"></a><span class="ss">2. </span>**`lavaan_generator()`** — usa <span class="in">`simulateData()`</span> por si se quiere reproducir exactamente la matriz poblacional.</span>
 <span id="cb25-203"><a href="#cb25-203"></a></span>
-<span id="cb25-204"><a href="#cb25-204"></a>Ejemplo:</span>
+<span id="cb25-204"><a href="#cb25-204"></a>Función principal <span class="in">`generate_data()`</span>, con argumento <span class="in">`engine = &quot;manual&quot; | &quot;lavaan&quot;`</span>.</span>
 <span id="cb25-205"><a href="#cb25-205"></a></span>
 <span id="cb25-208"><a href="#cb25-208"></a><span class="in">```{r}</span></span>
-<span id="cb25-209"><a href="#cb25-209"></a>data_ejemplo <span class="ot">&lt;-</span> <span class="fu">generate_data</span>(<span class="dv">400</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>)</span>
-<span id="cb25-210"><a href="#cb25-210"></a>data_ejemplo</span>
-<span id="cb25-211"><a href="#cb25-211"></a><span class="in">```</span></span>
-<span id="cb25-212"><a href="#cb25-212"></a></span>
-<span id="cb25-213"><a href="#cb25-213"></a><span class="fu">## Estimators</span></span>
-<span id="cb25-214"><a href="#cb25-214"></a></span>
-<span id="cb25-215"><a href="#cb25-215"></a><span class="ss">* </span>Ajusta un **CFA** para recuperar la diferencia de medias latentes — devuelta como <span class="in">`d_fscore`</span>.  </span>
-<span id="cb25-216"><a href="#cb25-216"></a><span class="ss">* </span>Calcula <span class="in">`d_mean`</span> (promedio de ítems estandarizado) y <span class="in">`d_mimic`</span> (pendiente *grupo → factor* en modelo MIMIC).  </span>
-<span id="cb25-217"><a href="#cb25-217"></a><span class="ss">* </span>La función de alto nivel <span class="in">`analyse_data()`</span> empaqueta todo en un <span class="in">`list`</span>.</span>
-<span id="cb25-218"><a href="#cb25-218"></a></span>
-<span id="cb25-221"><a href="#cb25-221"></a><span class="in">```{r}</span></span>
-<span id="cb25-222"><a href="#cb25-222"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">03</span>_estimators.R <span class="sc">&gt;</span>}}</span>
-<span id="cb25-223"><a href="#cb25-223"></a><span class="in">```</span></span>
-<span id="cb25-224"><a href="#cb25-224"></a></span>
-<span id="cb25-225"><a href="#cb25-225"></a>Ejemplo:</span>
+<span id="cb25-209"><a href="#cb25-209"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">02</span>_generator.R <span class="sc">&gt;</span>}}</span>
+<span id="cb25-210"><a href="#cb25-210"></a><span class="in">```</span></span>
+<span id="cb25-211"><a href="#cb25-211"></a></span>
+<span id="cb25-212"><a href="#cb25-212"></a>Ejemplo:</span>
+<span id="cb25-213"><a href="#cb25-213"></a></span>
+<span id="cb25-216"><a href="#cb25-216"></a><span class="in">```{r}</span></span>
+<span id="cb25-217"><a href="#cb25-217"></a>data_ejemplo <span class="ot">&lt;-</span> <span class="fu">generate_data</span>(<span class="dv">400</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>)</span>
+<span id="cb25-218"><a href="#cb25-218"></a>data_ejemplo</span>
+<span id="cb25-219"><a href="#cb25-219"></a><span class="in">```</span></span>
+<span id="cb25-220"><a href="#cb25-220"></a></span>
+<span id="cb25-221"><a href="#cb25-221"></a><span class="fu">## Estimators</span></span>
+<span id="cb25-222"><a href="#cb25-222"></a></span>
+<span id="cb25-223"><a href="#cb25-223"></a><span class="ss">* </span>Ajusta un **CFA** para recuperar la diferencia de medias latentes — devuelta como <span class="in">`d_fscore`</span>.  </span>
+<span id="cb25-224"><a href="#cb25-224"></a><span class="ss">* </span>Calcula <span class="in">`d_mean`</span> (promedio de ítems estandarizado) y <span class="in">`d_mimic`</span> (pendiente *grupo → factor* en modelo MIMIC).  </span>
+<span id="cb25-225"><a href="#cb25-225"></a><span class="ss">* </span>La función de alto nivel <span class="in">`analyse_data()`</span> empaqueta todo en un <span class="in">`list`</span>.</span>
 <span id="cb25-226"><a href="#cb25-226"></a></span>
 <span id="cb25-229"><a href="#cb25-229"></a><span class="in">```{r}</span></span>
-<span id="cb25-230"><a href="#cb25-230"></a>analisis_ejemplo <span class="ot">&lt;-</span> <span class="fu">analyse_data</span>(data_ejemplo)</span>
-<span id="cb25-231"><a href="#cb25-231"></a>analisis_ejemplo</span>
-<span id="cb25-232"><a href="#cb25-232"></a><span class="in">```</span></span>
-<span id="cb25-233"><a href="#cb25-233"></a></span>
-<span id="cb25-234"><a href="#cb25-234"></a><span class="fu">## Sim One</span></span>
-<span id="cb25-235"><a href="#cb25-235"></a></span>
-<span id="cb25-236"><a href="#cb25-236"></a>Integra **una réplica** completa:</span>
-<span id="cb25-237"><a href="#cb25-237"></a></span>
-<span id="cb25-238"><a href="#cb25-238"></a><span class="ss">1. </span>Fija semilla.  </span>
-<span id="cb25-239"><a href="#cb25-239"></a><span class="ss">2. </span>Llama a <span class="in">`generate_data()`</span> y <span class="in">`analyse_data()`</span>.  </span>
-<span id="cb25-240"><a href="#cb25-240"></a><span class="ss">3. </span>Devuelve un <span class="in">`tibble`</span> con <span class="in">`d_true`</span>, <span class="in">`d_mean`</span>, <span class="in">`d_fscore`</span>, <span class="in">`d_mimic`</span>.  </span>
-<span id="cb25-241"><a href="#cb25-241"></a><span class="ss">4. </span>(Opcional) guarda los datos crudos en <span class="in">`01_data/raw/`</span>.</span>
-<span id="cb25-242"><a href="#cb25-242"></a></span>
-<span id="cb25-245"><a href="#cb25-245"></a><span class="in">```{r}</span></span>
-<span id="cb25-246"><a href="#cb25-246"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">04</span>_sim_one.R <span class="sc">&gt;</span>}}</span>
-<span id="cb25-247"><a href="#cb25-247"></a><span class="in">```</span></span>
-<span id="cb25-248"><a href="#cb25-248"></a></span>
-<span id="cb25-249"><a href="#cb25-249"></a>Ejemplo:</span>
+<span id="cb25-230"><a href="#cb25-230"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">03</span>_estimators.R <span class="sc">&gt;</span>}}</span>
+<span id="cb25-231"><a href="#cb25-231"></a><span class="in">```</span></span>
+<span id="cb25-232"><a href="#cb25-232"></a></span>
+<span id="cb25-233"><a href="#cb25-233"></a>Ejemplo:</span>
+<span id="cb25-234"><a href="#cb25-234"></a></span>
+<span id="cb25-237"><a href="#cb25-237"></a><span class="in">```{r}</span></span>
+<span id="cb25-238"><a href="#cb25-238"></a>analisis_ejemplo <span class="ot">&lt;-</span> <span class="fu">analyse_data</span>(data_ejemplo)</span>
+<span id="cb25-239"><a href="#cb25-239"></a>analisis_ejemplo</span>
+<span id="cb25-240"><a href="#cb25-240"></a><span class="in">```</span></span>
+<span id="cb25-241"><a href="#cb25-241"></a></span>
+<span id="cb25-242"><a href="#cb25-242"></a><span class="fu">## Sim One</span></span>
+<span id="cb25-243"><a href="#cb25-243"></a></span>
+<span id="cb25-244"><a href="#cb25-244"></a>Integra **una réplica** completa:</span>
+<span id="cb25-245"><a href="#cb25-245"></a></span>
+<span id="cb25-246"><a href="#cb25-246"></a><span class="ss">1. </span>Fija semilla.  </span>
+<span id="cb25-247"><a href="#cb25-247"></a><span class="ss">2. </span>Llama a <span class="in">`generate_data()`</span> y <span class="in">`analyse_data()`</span>.  </span>
+<span id="cb25-248"><a href="#cb25-248"></a><span class="ss">3. </span>Devuelve un <span class="in">`tibble`</span> con <span class="in">`d_true`</span>, <span class="in">`d_mean`</span>, <span class="in">`d_fscore`</span>, <span class="in">`d_mimic`</span>.  </span>
+<span id="cb25-249"><a href="#cb25-249"></a><span class="ss">4. </span>(Opcional) guarda los datos crudos en <span class="in">`01_data/raw/`</span>.</span>
 <span id="cb25-250"><a href="#cb25-250"></a></span>
 <span id="cb25-253"><a href="#cb25-253"></a><span class="in">```{r}</span></span>
-<span id="cb25-254"><a href="#cb25-254"></a><span class="fu">sim_one</span>(<span class="at">seed =</span> <span class="dv">2025</span>, <span class="at">n_total =</span> <span class="dv">400</span>, </span>
-<span id="cb25-255"><a href="#cb25-255"></a>        <span class="at">Delta_theta =</span> <span class="fl">0.5</span>, <span class="at">Delta_nu =</span> <span class="fl">0.2</span>)</span>
-<span id="cb25-256"><a href="#cb25-256"></a><span class="in">```</span></span>
-<span id="cb25-257"><a href="#cb25-257"></a></span>
-<span id="cb25-258"><a href="#cb25-258"></a><span class="fu">## Parallel</span></span>
-<span id="cb25-259"><a href="#cb25-259"></a></span>
-<span id="cb25-260"><a href="#cb25-260"></a>Expande el grid (32 condiciones × 500 réplicas), asigna **una semilla única por fila** y lanza el cálculo en paralelo con **future + progressr**:</span>
-<span id="cb25-261"><a href="#cb25-261"></a></span>
-<span id="cb25-262"><a href="#cb25-262"></a><span class="ss">* </span>Guarda <span class="in">`sim_results_raw.rds`</span></span>
-<span id="cb25-263"><a href="#cb25-263"></a></span>
-<span id="cb25-266"><a href="#cb25-266"></a><span class="in">```{r}</span></span>
-<span id="cb25-267"><a href="#cb25-267"></a><span class="co">#| eval: false</span></span>
-<span id="cb25-268"><a href="#cb25-268"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">05</span>_parallel.R <span class="sc">&gt;</span>}}</span>
-<span id="cb25-269"><a href="#cb25-269"></a><span class="in">```</span></span>
-<span id="cb25-270"><a href="#cb25-270"></a></span>
-<span id="cb25-271"><a href="#cb25-271"></a>Una vez cargado y configurado, se procedió a realizar la simulación:</span>
-<span id="cb25-272"><a href="#cb25-272"></a></span>
-<span id="cb25-273"><a href="#cb25-273"></a><span class="al">![Simulación usando paralelización con todos los núcleos activos](images/sim-status.png)</span>{fig-align=&quot;center&quot;}</span>
-<span id="cb25-274"><a href="#cb25-274"></a></span>
-<span id="cb25-275"><a href="#cb25-275"></a>::: {.callout-note}</span>
-<span id="cb25-276"><a href="#cb25-276"></a>Con esta estructura modular resulta sencillo depurar o sustituir solo la parte interesada (p. ej., cambiar el generador o añadir un nuevo estimador) sin afectar al resto del flujo.</span>
-<span id="cb25-277"><a href="#cb25-277"></a>:::</span>
+<span id="cb25-254"><a href="#cb25-254"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">04</span>_sim_one.R <span class="sc">&gt;</span>}}</span>
+<span id="cb25-255"><a href="#cb25-255"></a><span class="in">```</span></span>
+<span id="cb25-256"><a href="#cb25-256"></a></span>
+<span id="cb25-257"><a href="#cb25-257"></a>Ejemplo:</span>
+<span id="cb25-258"><a href="#cb25-258"></a></span>
+<span id="cb25-261"><a href="#cb25-261"></a><span class="in">```{r}</span></span>
+<span id="cb25-262"><a href="#cb25-262"></a><span class="fu">sim_one</span>(<span class="at">seed =</span> <span class="dv">2025</span>, <span class="at">n_total =</span> <span class="dv">400</span>, </span>
+<span id="cb25-263"><a href="#cb25-263"></a>        <span class="at">Delta_theta =</span> <span class="fl">0.5</span>, <span class="at">Delta_nu =</span> <span class="fl">0.2</span>)</span>
+<span id="cb25-264"><a href="#cb25-264"></a><span class="in">```</span></span>
+<span id="cb25-265"><a href="#cb25-265"></a></span>
+<span id="cb25-266"><a href="#cb25-266"></a><span class="fu">## Parallel</span></span>
+<span id="cb25-267"><a href="#cb25-267"></a></span>
+<span id="cb25-268"><a href="#cb25-268"></a>Expande el grid (32 condiciones × 500 réplicas), asigna **una semilla única por fila** y lanza el cálculo en paralelo con **future + progressr**:</span>
+<span id="cb25-269"><a href="#cb25-269"></a></span>
+<span id="cb25-270"><a href="#cb25-270"></a><span class="ss">* </span>Guarda <span class="in">`sim_results_raw.rds`</span></span>
+<span id="cb25-271"><a href="#cb25-271"></a></span>
+<span id="cb25-274"><a href="#cb25-274"></a><span class="in">```{r}</span></span>
+<span id="cb25-275"><a href="#cb25-275"></a><span class="co">#| eval: false</span></span>
+<span id="cb25-276"><a href="#cb25-276"></a>{{<span class="sc">&lt;</span> include <span class="sc">/</span><span class="dv">03</span>_functions<span class="sc">/</span><span class="dv">05</span>_parallel.R <span class="sc">&gt;</span>}}</span>
+<span id="cb25-277"><a href="#cb25-277"></a><span class="in">```</span></span>
 <span id="cb25-278"><a href="#cb25-278"></a></span>
-<span id="cb25-279"><a href="#cb25-279"></a><span class="fu"># Análisis</span></span>
+<span id="cb25-279"><a href="#cb25-279"></a>Una vez cargado y configurado, se procedió a realizar la simulación:</span>
 <span id="cb25-280"><a href="#cb25-280"></a></span>
-<span id="cb25-281"><a href="#cb25-281"></a>Realizaremos primero un resumen de las simulaciones enfocados en *bias* y *rmse*.</span>
+<span id="cb25-281"><a href="#cb25-281"></a><span class="al">![Simulación usando paralelización con todos los núcleos activos](images/sim-status.png)</span>{fig-align=&quot;center&quot;}</span>
 <span id="cb25-282"><a href="#cb25-282"></a></span>
-<span id="cb25-285"><a href="#cb25-285"></a><span class="in">```{r}</span></span>
-<span id="cb25-286"><a href="#cb25-286"></a>config <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;config_sim.rds&quot;</span>))</span>
-<span id="cb25-287"><a href="#cb25-287"></a>DIRS   <span class="ot">&lt;-</span> config<span class="sc">$</span>dirs</span>
-<span id="cb25-288"><a href="#cb25-288"></a>raw_rds <span class="ot">&lt;-</span> <span class="fu">file.path</span>(DIRS<span class="sc">$</span>processed, <span class="st">&quot;sim_results_raw.rds&quot;</span>)</span>
-<span id="cb25-289"><a href="#cb25-289"></a></span>
-<span id="cb25-290"><a href="#cb25-290"></a>results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(raw_rds)</span>
-<span id="cb25-291"><a href="#cb25-291"></a></span>
-<span id="cb25-292"><a href="#cb25-292"></a><span class="co"># ---- RESUMEN ---------</span></span>
-<span id="cb25-293"><a href="#cb25-293"></a></span>
-<span id="cb25-294"><a href="#cb25-294"></a>bias_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;d_mean&quot;</span>, <span class="st">&quot;d_fscore&quot;</span>, <span class="st">&quot;d_mimic&quot;</span>)</span>
-<span id="cb25-295"><a href="#cb25-295"></a></span>
-<span id="cb25-296"><a href="#cb25-296"></a>summary_tbl <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
-<span id="cb25-297"><a href="#cb25-297"></a>  <span class="fu">group_by</span>(n_total, Delta_theta, Delta_nu) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-298"><a href="#cb25-298"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb25-299"><a href="#cb25-299"></a>    <span class="fu">across</span>(<span class="fu">all_of</span>(bias_cols),</span>
-<span id="cb25-300"><a href="#cb25-300"></a>           <span class="do">## cada función devuelve un escalar</span></span>
-<span id="cb25-301"><a href="#cb25-301"></a>           <span class="fu">list</span>(</span>
-<span id="cb25-302"><a href="#cb25-302"></a>             <span class="at">bias_mean  =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x <span class="sc">-</span> d_true, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-303"><a href="#cb25-303"></a>             <span class="at">bias_low   =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x <span class="sc">-</span> d_true,  .<span class="dv">025</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-304"><a href="#cb25-304"></a>             <span class="at">bias_high  =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x <span class="sc">-</span> d_true,  .<span class="dv">975</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-305"><a href="#cb25-305"></a>             <span class="at">rmse_mean  =</span> <span class="sc">~</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((.x <span class="sc">-</span> d_true)<span class="sc">^</span><span class="dv">2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb25-306"><a href="#cb25-306"></a>             <span class="at">rmse_low   =</span> <span class="sc">~</span> <span class="fu">quantile</span>(<span class="fu">abs</span>(.x <span class="sc">-</span> d_true), .<span class="dv">025</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-307"><a href="#cb25-307"></a>             <span class="at">rmse_high  =</span> <span class="sc">~</span> <span class="fu">quantile</span>(<span class="fu">abs</span>(.x <span class="sc">-</span> d_true), .<span class="dv">975</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb25-308"><a href="#cb25-308"></a>           ),</span>
-<span id="cb25-309"><a href="#cb25-309"></a>           <span class="at">.names =</span> <span class="st">&quot;{.col}_{.fn}&quot;</span>)</span>
-<span id="cb25-310"><a href="#cb25-310"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-311"><a href="#cb25-311"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb25-312"><a href="#cb25-312"></a></span>
-<span id="cb25-313"><a href="#cb25-313"></a>summary_tbl</span>
-<span id="cb25-314"><a href="#cb25-314"></a><span class="in">```</span></span>
-<span id="cb25-315"><a href="#cb25-315"></a></span>
-<span id="cb25-316"><a href="#cb25-316"></a><span class="fu">## Bias</span></span>
-<span id="cb25-317"><a href="#cb25-317"></a></span>
-<span id="cb25-318"><a href="#cb25-318"></a>En el gráfico de sesgo observamos cuánto se desplaza, en promedio, la estimación de la diferencia de medias ($\hat{d}$) con respecto al valor poblacional verdadero. Cuando el sesgo de intercepto es nulo ($\Delta \nu = 0$) las tres curvas de los métodos se sitúan prácticamente sobre la línea roja de referencia, confirmando que el procedimiento es imparcial en ausencia de distorsión. Sin embargo, basta incrementar gradualmente $\Delta \nu$ para que todas las líneas asciendan con una pendiente casi perfecta: cuanto mayor es la distorsión en los interceptos, mayor la sobre-estimación de la diferencia entre grupos. El método basado en MIMIC es el que muestra más rápidamente esa desviación, seguido por el promedio de ítems y por los factor scores; este orden se mantiene en todos los tamaños muestrales y en los cuatro escenarios de diferencia latente (\Delta \theta). Las bandas sombreadas, que representan el intervalo empírico del 95 %, se vuelven apenas más estrechas al pasar de N=400 a N=800N, lo que indica que aumentar la muestra reduce muy poco la incertidumbre cuando el sesgo sistemático domina el error.</span>
-<span id="cb25-319"><a href="#cb25-319"></a></span>
-<span id="cb25-322"><a href="#cb25-322"></a><span class="in">```{r}</span></span>
-<span id="cb25-323"><a href="#cb25-323"></a>bias_long <span class="ot">&lt;-</span> summary_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb25-324"><a href="#cb25-324"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">matches</span>(<span class="st">&quot;_bias_(mean|low|high)$&quot;</span>),</span>
-<span id="cb25-325"><a href="#cb25-325"></a>               <span class="at">names_to  =</span> <span class="fu">c</span>(<span class="st">&quot;method&quot;</span>, <span class="st">&quot;stat&quot;</span>),</span>
-<span id="cb25-326"><a href="#cb25-326"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(d_[^_]+)_bias_(.*)&quot;</span>,</span>
-<span id="cb25-327"><a href="#cb25-327"></a>               <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-328"><a href="#cb25-328"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> stat, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-329"><a href="#cb25-329"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="fu">factor</span>(method,</span>
-<span id="cb25-330"><a href="#cb25-330"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;d_mean&quot;</span>,<span class="st">&quot;d_fscore&quot;</span>,<span class="st">&quot;d_mimic&quot;</span>),</span>
-<span id="cb25-331"><a href="#cb25-331"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Mean score&quot;</span>,<span class="st">&quot;Factor score&quot;</span>,<span class="st">&quot;MIMIC&quot;</span>)))</span>
-<span id="cb25-332"><a href="#cb25-332"></a><span class="in">```</span></span>
-<span id="cb25-333"><a href="#cb25-333"></a></span>
-<span id="cb25-334"><a href="#cb25-334"></a></span>
-<span id="cb25-337"><a href="#cb25-337"></a><span class="in">```{r}</span></span>
-<span id="cb25-338"><a href="#cb25-338"></a><span class="co">#| fig-width: 9</span></span>
-<span id="cb25-339"><a href="#cb25-339"></a><span class="co">#| fig-height: 8</span></span>
-<span id="cb25-340"><a href="#cb25-340"></a></span>
-<span id="cb25-341"><a href="#cb25-341"></a><span class="fu">ggplot</span>(bias_long,</span>
-<span id="cb25-342"><a href="#cb25-342"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> Delta_nu, <span class="at">y =</span> mean,</span>
-<span id="cb25-343"><a href="#cb25-343"></a>                     <span class="at">colour =</span> method, <span class="at">fill =</span> method,</span>
-<span id="cb25-344"><a href="#cb25-344"></a>                     <span class="at">shape =</span> method, <span class="at">group =</span> method)) <span class="sc">+</span></span>
-<span id="cb25-345"><a href="#cb25-345"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linewidth =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb25-346"><a href="#cb25-346"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> .<span class="dv">15</span>, <span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb25-347"><a href="#cb25-347"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-348"><a href="#cb25-348"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb25-349"><a href="#cb25-349"></a>  <span class="fu">facet_grid</span>(Delta_theta <span class="sc">~</span> n_total,</span>
-<span id="cb25-350"><a href="#cb25-350"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(</span>
-<span id="cb25-351"><a href="#cb25-351"></a>               <span class="at">Delta_theta =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;Δθ = %s&quot;</span>, x),</span>
-<span id="cb25-352"><a href="#cb25-352"></a>               <span class="at">n_total     =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;N = %s&quot;</span>, x))) <span class="sc">+</span></span>
-<span id="cb25-353"><a href="#cb25-353"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-354"><a href="#cb25-354"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>,  <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-355"><a href="#cb25-355"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">15</span>), <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-356"><a href="#cb25-356"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sesgo del estimador d (media e IC 95 %)&quot;</span>,</span>
-<span id="cb25-357"><a href="#cb25-357"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Delta<span class="sc">*</span>nu),</span>
-<span id="cb25-358"><a href="#cb25-358"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">&quot;Sesgo (&quot;</span><span class="sc">*</span><span class="fu">hat</span>(d) <span class="sc">-</span> d[verdadero]<span class="sc">*</span><span class="st">&quot;)&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb25-359"><a href="#cb25-359"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb25-360"><a href="#cb25-360"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
-<span id="cb25-361"><a href="#cb25-361"></a>        <span class="at">panel.spacing.y  =</span> <span class="fu">unit</span>(.<span class="dv">8</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb25-362"><a href="#cb25-362"></a>        <span class="at">panel.spacing.x  =</span> <span class="fu">unit</span>(.<span class="dv">6</span>, <span class="st">&quot;lines&quot;</span>))</span>
-<span id="cb25-363"><a href="#cb25-363"></a><span class="in">```</span></span>
-<span id="cb25-364"><a href="#cb25-364"></a></span>
-<span id="cb25-365"><a href="#cb25-365"></a><span class="fu">## RMSE</span></span>
-<span id="cb25-366"><a href="#cb25-366"></a></span>
-<span id="cb25-367"><a href="#cb25-367"></a>El gráfico de RMSE confirma esa lectura. El RMSE combina varianza entre réplicas y sesgo al cuadrado; sin embargo, las curvas resultan casi superponibles a las del sesgo medio porque la variabilidad de las estimaciones es muy pequeña en comparación con la magnitud del sesgo introducido por $\Delta \nu$. En otras palabras, los estimadores son muy precisos pero potencialmente muy inexactos: convergen de forma consistent hacia un valor equivocado cuando los interceptos están contaminados. De nuevo, las diferencias entre métodos son claras: MIMIC acumula el mayor error total, mientras que el promedio y los factor scores muestran un crecimiento más moderado.</span>
-<span id="cb25-368"><a href="#cb25-368"></a></span>
-<span id="cb25-371"><a href="#cb25-371"></a><span class="in">```{r}</span></span>
-<span id="cb25-372"><a href="#cb25-372"></a>rmse_long <span class="ot">&lt;-</span> summary_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb25-373"><a href="#cb25-373"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">matches</span>(<span class="st">&quot;_rmse_(mean|low|high)$&quot;</span>),</span>
-<span id="cb25-374"><a href="#cb25-374"></a>               <span class="at">names_to  =</span> <span class="fu">c</span>(<span class="st">&quot;method&quot;</span>, <span class="st">&quot;stat&quot;</span>),</span>
-<span id="cb25-375"><a href="#cb25-375"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(d_[^_]+)_rmse_(.*)&quot;</span>,</span>
-<span id="cb25-376"><a href="#cb25-376"></a>               <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-377"><a href="#cb25-377"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> stat, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-378"><a href="#cb25-378"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="fu">factor</span>(method,</span>
-<span id="cb25-379"><a href="#cb25-379"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;d_mean&quot;</span>,<span class="st">&quot;d_fscore&quot;</span>,<span class="st">&quot;d_mimic&quot;</span>),</span>
-<span id="cb25-380"><a href="#cb25-380"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Mean score&quot;</span>,<span class="st">&quot;Factor score&quot;</span>,<span class="st">&quot;MIMIC&quot;</span>)))</span>
-<span id="cb25-381"><a href="#cb25-381"></a><span class="in">```</span></span>
-<span id="cb25-382"><a href="#cb25-382"></a></span>
-<span id="cb25-385"><a href="#cb25-385"></a><span class="in">```{r}</span></span>
-<span id="cb25-386"><a href="#cb25-386"></a><span class="co">#| fig-width: 9</span></span>
-<span id="cb25-387"><a href="#cb25-387"></a><span class="co">#| fig-height: 8</span></span>
-<span id="cb25-388"><a href="#cb25-388"></a><span class="fu">ggplot</span>(rmse_long,</span>
-<span id="cb25-389"><a href="#cb25-389"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> Delta_nu, <span class="at">y =</span> mean,</span>
-<span id="cb25-390"><a href="#cb25-390"></a>                     <span class="at">colour =</span> method, <span class="at">fill =</span> method,</span>
-<span id="cb25-391"><a href="#cb25-391"></a>                     <span class="at">shape =</span> method, <span class="at">group =</span> method)) <span class="sc">+</span></span>
-<span id="cb25-392"><a href="#cb25-392"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> .<span class="dv">15</span>, <span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb25-393"><a href="#cb25-393"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-394"><a href="#cb25-394"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb25-395"><a href="#cb25-395"></a>  <span class="fu">facet_grid</span>(Delta_theta <span class="sc">~</span> n_total,</span>
-<span id="cb25-396"><a href="#cb25-396"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(</span>
-<span id="cb25-397"><a href="#cb25-397"></a>               <span class="at">Delta_theta =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;Δθ = %s&quot;</span>, x),</span>
-<span id="cb25-398"><a href="#cb25-398"></a>               <span class="at">n_total     =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;N = %s&quot;</span>, x))) <span class="sc">+</span></span>
-<span id="cb25-399"><a href="#cb25-399"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-400"><a href="#cb25-400"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>,  <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-401"><a href="#cb25-401"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">15</span>), <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-402"><a href="#cb25-402"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;RMSE del estimador d (media e IC 95 %)&quot;</span>,</span>
-<span id="cb25-403"><a href="#cb25-403"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Delta<span class="sc">*</span>nu), <span class="at">y =</span> <span class="st">&quot;RMSE&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-404"><a href="#cb25-404"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb25-405"><a href="#cb25-405"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
-<span id="cb25-406"><a href="#cb25-406"></a>        <span class="at">panel.spacing.y  =</span> <span class="fu">unit</span>(.<span class="dv">8</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb25-407"><a href="#cb25-407"></a>        <span class="at">panel.spacing.x  =</span> <span class="fu">unit</span>(.<span class="dv">6</span>, <span class="st">&quot;lines&quot;</span>))</span>
-<span id="cb25-408"><a href="#cb25-408"></a><span class="in">```</span></span>
-<span id="cb25-409"><a href="#cb25-409"></a></span>
-<span id="cb25-410"><a href="#cb25-410"></a></span>
-<span id="cb25-411"><a href="#cb25-411"></a><span class="fu"># Conclusiones</span></span>
-<span id="cb25-412"><a href="#cb25-412"></a></span>
-<span id="cb25-413"><a href="#cb25-413"></a>En conjunto, los análisis muestran que la fiabilidad de una prueba de diferencia de medias entre grupos depende mucho más de la presencia de sesgo en los ítems que del tamaño de la muestra manejado en este estudio. Aún duplicando el número de participantes, la sobre-estimación permanece prácticamente intacta si no se corrige el problema de los interceptos o al menos se diagnostica para controlarlo adecuadamente. </span>
-<span id="cb25-414"><a href="#cb25-414"></a></span>
-<span id="cb25-415"><a href="#cb25-415"></a>También es relevante el sesgo que se introduce con el modelo mimic que parte de evaluar las diferencias en un contexto de modelamiento de ecuaciones estructurales (SEM) cuando no se verifica apropiadamente un análisis de invarianza escalar (interceptos) o análisis DIF de ítems. Emplear este método puede incrementar aún más el sesgo en las diferencias de grupos empleadas.</span>
-<span id="cb25-416"><a href="#cb25-416"></a></span>
-<span id="cb25-417"><a href="#cb25-417"></a>Por último, la pequeña diferencia entre el método <span class="in">`Factor score`</span> y <span class="in">`Mean score`</span> podría deberse a que en simulación únicamente se manipuló el parámetro de intercepto ($\nu$) y no las cargas factoriales diferentes entre grupos ($\lambda$).</span>
+<span id="cb25-283"><a href="#cb25-283"></a>::: {.callout-note}</span>
+<span id="cb25-284"><a href="#cb25-284"></a>Con esta estructura modular resulta sencillo depurar o sustituir solo la parte interesada (p. ej., cambiar el generador o añadir un nuevo estimador) sin afectar al resto del flujo.</span>
+<span id="cb25-285"><a href="#cb25-285"></a>:::</span>
+<span id="cb25-286"><a href="#cb25-286"></a></span>
+<span id="cb25-287"><a href="#cb25-287"></a><span class="fu"># Análisis</span></span>
+<span id="cb25-288"><a href="#cb25-288"></a></span>
+<span id="cb25-289"><a href="#cb25-289"></a>Realizaremos primero un resumen de las simulaciones enfocados en *bias* y *rmse*.</span>
+<span id="cb25-290"><a href="#cb25-290"></a></span>
+<span id="cb25-293"><a href="#cb25-293"></a><span class="in">```{r}</span></span>
+<span id="cb25-294"><a href="#cb25-294"></a>config <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;config_sim.rds&quot;</span>))</span>
+<span id="cb25-295"><a href="#cb25-295"></a>DIRS   <span class="ot">&lt;-</span> config<span class="sc">$</span>dirs</span>
+<span id="cb25-296"><a href="#cb25-296"></a>raw_rds <span class="ot">&lt;-</span> <span class="fu">file.path</span>(DIRS<span class="sc">$</span>processed, <span class="st">&quot;sim_results_raw.rds&quot;</span>)</span>
+<span id="cb25-297"><a href="#cb25-297"></a></span>
+<span id="cb25-298"><a href="#cb25-298"></a>results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(raw_rds)</span>
+<span id="cb25-299"><a href="#cb25-299"></a></span>
+<span id="cb25-300"><a href="#cb25-300"></a><span class="co"># ---- RESUMEN ---------</span></span>
+<span id="cb25-301"><a href="#cb25-301"></a></span>
+<span id="cb25-302"><a href="#cb25-302"></a>bias_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;d_mean&quot;</span>, <span class="st">&quot;d_fscore&quot;</span>, <span class="st">&quot;d_mimic&quot;</span>)</span>
+<span id="cb25-303"><a href="#cb25-303"></a></span>
+<span id="cb25-304"><a href="#cb25-304"></a>summary_tbl <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span> </span>
+<span id="cb25-305"><a href="#cb25-305"></a>  <span class="fu">group_by</span>(n_total, Delta_theta, Delta_nu) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-306"><a href="#cb25-306"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-307"><a href="#cb25-307"></a>    <span class="fu">across</span>(<span class="fu">all_of</span>(bias_cols),</span>
+<span id="cb25-308"><a href="#cb25-308"></a>           <span class="do">## cada función devuelve un escalar</span></span>
+<span id="cb25-309"><a href="#cb25-309"></a>           <span class="fu">list</span>(</span>
+<span id="cb25-310"><a href="#cb25-310"></a>             <span class="at">bias_mean  =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x <span class="sc">-</span> d_true, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-311"><a href="#cb25-311"></a>             <span class="at">bias_low   =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x <span class="sc">-</span> d_true,  .<span class="dv">025</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-312"><a href="#cb25-312"></a>             <span class="at">bias_high  =</span> <span class="sc">~</span> <span class="fu">quantile</span>(.x <span class="sc">-</span> d_true,  .<span class="dv">975</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-313"><a href="#cb25-313"></a>             <span class="at">rmse_mean  =</span> <span class="sc">~</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((.x <span class="sc">-</span> d_true)<span class="sc">^</span><span class="dv">2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb25-314"><a href="#cb25-314"></a>             <span class="at">rmse_low   =</span> <span class="sc">~</span> <span class="fu">quantile</span>(<span class="fu">abs</span>(.x <span class="sc">-</span> d_true), .<span class="dv">025</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-315"><a href="#cb25-315"></a>             <span class="at">rmse_high  =</span> <span class="sc">~</span> <span class="fu">quantile</span>(<span class="fu">abs</span>(.x <span class="sc">-</span> d_true), .<span class="dv">975</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb25-316"><a href="#cb25-316"></a>           ),</span>
+<span id="cb25-317"><a href="#cb25-317"></a>           <span class="at">.names =</span> <span class="st">&quot;{.col}_{.fn}&quot;</span>)</span>
+<span id="cb25-318"><a href="#cb25-318"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-319"><a href="#cb25-319"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb25-320"><a href="#cb25-320"></a></span>
+<span id="cb25-321"><a href="#cb25-321"></a>summary_tbl</span>
+<span id="cb25-322"><a href="#cb25-322"></a><span class="in">```</span></span>
+<span id="cb25-323"><a href="#cb25-323"></a></span>
+<span id="cb25-324"><a href="#cb25-324"></a><span class="fu">## Bias</span></span>
+<span id="cb25-325"><a href="#cb25-325"></a></span>
+<span id="cb25-326"><a href="#cb25-326"></a>En el gráfico de sesgo observamos cuánto se desplaza, en promedio, la estimación de la diferencia de medias ($\hat{d}$) con respecto al valor poblacional verdadero. Cuando el sesgo de intercepto es nulo ($\Delta \nu = 0$) las tres curvas de los métodos se sitúan prácticamente sobre la línea roja de referencia, confirmando que el procedimiento es imparcial en ausencia de distorsión. Sin embargo, basta incrementar gradualmente $\Delta \nu$ para que todas las líneas asciendan con una pendiente casi perfecta: cuanto mayor es la distorsión en los interceptos, mayor la sobre-estimación de la diferencia entre grupos. El método basado en MIMIC es el que muestra más rápidamente esa desviación, seguido por el promedio de ítems y por los factor scores; este orden se mantiene en todos los tamaños muestrales y en los cuatro escenarios de diferencia latente (\Delta \theta). Las bandas sombreadas, que representan el intervalo empírico del 95 %, se vuelven apenas más estrechas al pasar de N=400 a N=800N, lo que indica que aumentar la muestra reduce muy poco la incertidumbre cuando el sesgo sistemático domina el error.</span>
+<span id="cb25-327"><a href="#cb25-327"></a></span>
+<span id="cb25-330"><a href="#cb25-330"></a><span class="in">```{r}</span></span>
+<span id="cb25-331"><a href="#cb25-331"></a>bias_long <span class="ot">&lt;-</span> summary_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb25-332"><a href="#cb25-332"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">matches</span>(<span class="st">&quot;_bias_(mean|low|high)$&quot;</span>),</span>
+<span id="cb25-333"><a href="#cb25-333"></a>               <span class="at">names_to  =</span> <span class="fu">c</span>(<span class="st">&quot;method&quot;</span>, <span class="st">&quot;stat&quot;</span>),</span>
+<span id="cb25-334"><a href="#cb25-334"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(d_[^_]+)_bias_(.*)&quot;</span>,</span>
+<span id="cb25-335"><a href="#cb25-335"></a>               <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-336"><a href="#cb25-336"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> stat, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-337"><a href="#cb25-337"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="fu">factor</span>(method,</span>
+<span id="cb25-338"><a href="#cb25-338"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;d_mean&quot;</span>,<span class="st">&quot;d_fscore&quot;</span>,<span class="st">&quot;d_mimic&quot;</span>),</span>
+<span id="cb25-339"><a href="#cb25-339"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Mean score&quot;</span>,<span class="st">&quot;Factor score&quot;</span>,<span class="st">&quot;MIMIC&quot;</span>)))</span>
+<span id="cb25-340"><a href="#cb25-340"></a><span class="in">```</span></span>
+<span id="cb25-341"><a href="#cb25-341"></a></span>
+<span id="cb25-342"><a href="#cb25-342"></a></span>
+<span id="cb25-345"><a href="#cb25-345"></a><span class="in">```{r}</span></span>
+<span id="cb25-346"><a href="#cb25-346"></a><span class="co">#| fig-width: 9</span></span>
+<span id="cb25-347"><a href="#cb25-347"></a><span class="co">#| fig-height: 8</span></span>
+<span id="cb25-348"><a href="#cb25-348"></a></span>
+<span id="cb25-349"><a href="#cb25-349"></a><span class="fu">ggplot</span>(bias_long,</span>
+<span id="cb25-350"><a href="#cb25-350"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> Delta_nu, <span class="at">y =</span> mean,</span>
+<span id="cb25-351"><a href="#cb25-351"></a>                     <span class="at">colour =</span> method, <span class="at">fill =</span> method,</span>
+<span id="cb25-352"><a href="#cb25-352"></a>                     <span class="at">shape =</span> method, <span class="at">group =</span> method)) <span class="sc">+</span></span>
+<span id="cb25-353"><a href="#cb25-353"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linewidth =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb25-354"><a href="#cb25-354"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> .<span class="dv">15</span>, <span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb25-355"><a href="#cb25-355"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-356"><a href="#cb25-356"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb25-357"><a href="#cb25-357"></a>  <span class="fu">facet_grid</span>(Delta_theta <span class="sc">~</span> n_total,</span>
+<span id="cb25-358"><a href="#cb25-358"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(</span>
+<span id="cb25-359"><a href="#cb25-359"></a>               <span class="at">Delta_theta =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;Δθ = %s&quot;</span>, x),</span>
+<span id="cb25-360"><a href="#cb25-360"></a>               <span class="at">n_total     =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;N = %s&quot;</span>, x))) <span class="sc">+</span></span>
+<span id="cb25-361"><a href="#cb25-361"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-362"><a href="#cb25-362"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>,  <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-363"><a href="#cb25-363"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">15</span>), <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-364"><a href="#cb25-364"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sesgo del estimador d (media e IC 95 %)&quot;</span>,</span>
+<span id="cb25-365"><a href="#cb25-365"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Delta<span class="sc">*</span>nu),</span>
+<span id="cb25-366"><a href="#cb25-366"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">&quot;Sesgo (&quot;</span><span class="sc">*</span><span class="fu">hat</span>(d) <span class="sc">-</span> d[verdadero]<span class="sc">*</span><span class="st">&quot;)&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb25-367"><a href="#cb25-367"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb25-368"><a href="#cb25-368"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb25-369"><a href="#cb25-369"></a>        <span class="at">panel.spacing.y  =</span> <span class="fu">unit</span>(.<span class="dv">8</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb25-370"><a href="#cb25-370"></a>        <span class="at">panel.spacing.x  =</span> <span class="fu">unit</span>(.<span class="dv">6</span>, <span class="st">&quot;lines&quot;</span>))</span>
+<span id="cb25-371"><a href="#cb25-371"></a><span class="in">```</span></span>
+<span id="cb25-372"><a href="#cb25-372"></a></span>
+<span id="cb25-373"><a href="#cb25-373"></a><span class="fu">## RMSE</span></span>
+<span id="cb25-374"><a href="#cb25-374"></a></span>
+<span id="cb25-375"><a href="#cb25-375"></a>El gráfico de RMSE confirma esa lectura. El RMSE combina varianza entre réplicas y sesgo al cuadrado; sin embargo, las curvas resultan casi superponibles a las del sesgo medio porque la variabilidad de las estimaciones es muy pequeña en comparación con la magnitud del sesgo introducido por $\Delta \nu$. En otras palabras, los estimadores son muy precisos pero potencialmente muy inexactos: convergen de forma consistent hacia un valor equivocado cuando los interceptos están contaminados. De nuevo, las diferencias entre métodos son claras: MIMIC acumula el mayor error total, mientras que el promedio y los factor scores muestran un crecimiento más moderado.</span>
+<span id="cb25-376"><a href="#cb25-376"></a></span>
+<span id="cb25-379"><a href="#cb25-379"></a><span class="in">```{r}</span></span>
+<span id="cb25-380"><a href="#cb25-380"></a>rmse_long <span class="ot">&lt;-</span> summary_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb25-381"><a href="#cb25-381"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">matches</span>(<span class="st">&quot;_rmse_(mean|low|high)$&quot;</span>),</span>
+<span id="cb25-382"><a href="#cb25-382"></a>               <span class="at">names_to  =</span> <span class="fu">c</span>(<span class="st">&quot;method&quot;</span>, <span class="st">&quot;stat&quot;</span>),</span>
+<span id="cb25-383"><a href="#cb25-383"></a>               <span class="at">names_pattern =</span> <span class="st">&quot;(d_[^_]+)_rmse_(.*)&quot;</span>,</span>
+<span id="cb25-384"><a href="#cb25-384"></a>               <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-385"><a href="#cb25-385"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> stat, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-386"><a href="#cb25-386"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="fu">factor</span>(method,</span>
+<span id="cb25-387"><a href="#cb25-387"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;d_mean&quot;</span>,<span class="st">&quot;d_fscore&quot;</span>,<span class="st">&quot;d_mimic&quot;</span>),</span>
+<span id="cb25-388"><a href="#cb25-388"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Mean score&quot;</span>,<span class="st">&quot;Factor score&quot;</span>,<span class="st">&quot;MIMIC&quot;</span>)))</span>
+<span id="cb25-389"><a href="#cb25-389"></a><span class="in">```</span></span>
+<span id="cb25-390"><a href="#cb25-390"></a></span>
+<span id="cb25-393"><a href="#cb25-393"></a><span class="in">```{r}</span></span>
+<span id="cb25-394"><a href="#cb25-394"></a><span class="co">#| fig-width: 9</span></span>
+<span id="cb25-395"><a href="#cb25-395"></a><span class="co">#| fig-height: 8</span></span>
+<span id="cb25-396"><a href="#cb25-396"></a><span class="fu">ggplot</span>(rmse_long,</span>
+<span id="cb25-397"><a href="#cb25-397"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> Delta_nu, <span class="at">y =</span> mean,</span>
+<span id="cb25-398"><a href="#cb25-398"></a>                     <span class="at">colour =</span> method, <span class="at">fill =</span> method,</span>
+<span id="cb25-399"><a href="#cb25-399"></a>                     <span class="at">shape =</span> method, <span class="at">group =</span> method)) <span class="sc">+</span></span>
+<span id="cb25-400"><a href="#cb25-400"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> .<span class="dv">15</span>, <span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb25-401"><a href="#cb25-401"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-402"><a href="#cb25-402"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb25-403"><a href="#cb25-403"></a>  <span class="fu">facet_grid</span>(Delta_theta <span class="sc">~</span> n_total,</span>
+<span id="cb25-404"><a href="#cb25-404"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(</span>
+<span id="cb25-405"><a href="#cb25-405"></a>               <span class="at">Delta_theta =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;Δθ = %s&quot;</span>, x),</span>
+<span id="cb25-406"><a href="#cb25-406"></a>               <span class="at">n_total     =</span> \(x) <span class="fu">sprintf</span>(<span class="st">&quot;N = %s&quot;</span>, x))) <span class="sc">+</span></span>
+<span id="cb25-407"><a href="#cb25-407"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-408"><a href="#cb25-408"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>,  <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-409"><a href="#cb25-409"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">15</span>), <span class="at">name =</span> <span class="st">&quot;Método&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-410"><a href="#cb25-410"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;RMSE del estimador d (media e IC 95 %)&quot;</span>,</span>
+<span id="cb25-411"><a href="#cb25-411"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Delta<span class="sc">*</span>nu), <span class="at">y =</span> <span class="st">&quot;RMSE&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-412"><a href="#cb25-412"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb25-413"><a href="#cb25-413"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb25-414"><a href="#cb25-414"></a>        <span class="at">panel.spacing.y  =</span> <span class="fu">unit</span>(.<span class="dv">8</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb25-415"><a href="#cb25-415"></a>        <span class="at">panel.spacing.x  =</span> <span class="fu">unit</span>(.<span class="dv">6</span>, <span class="st">&quot;lines&quot;</span>))</span>
+<span id="cb25-416"><a href="#cb25-416"></a><span class="in">```</span></span>
+<span id="cb25-417"><a href="#cb25-417"></a></span>
+<span id="cb25-418"><a href="#cb25-418"></a></span>
+<span id="cb25-419"><a href="#cb25-419"></a><span class="fu"># Conclusiones</span></span>
+<span id="cb25-420"><a href="#cb25-420"></a></span>
+<span id="cb25-421"><a href="#cb25-421"></a>En conjunto, los análisis muestran que la fiabilidad de una prueba de diferencia de medias entre grupos depende mucho más de la presencia de sesgo en los ítems que del tamaño de la muestra manejado en este estudio. Aún duplicando el número de participantes, la sobre-estimación permanece prácticamente intacta si no se corrige el problema de los interceptos o al menos se diagnostica para controlarlo adecuadamente. </span>
+<span id="cb25-422"><a href="#cb25-422"></a></span>
+<span id="cb25-423"><a href="#cb25-423"></a>También es relevante el sesgo que se introduce con el modelo mimic que parte de evaluar las diferencias en un contexto de modelamiento de ecuaciones estructurales (SEM) cuando no se verifica apropiadamente un análisis de invarianza escalar (interceptos) o análisis DIF de ítems. Emplear este método puede incrementar aún más el sesgo en las diferencias de grupos empleadas.</span>
+<span id="cb25-424"><a href="#cb25-424"></a></span>
+<span id="cb25-425"><a href="#cb25-425"></a>Por último, la pequeña diferencia entre el método <span class="in">`Factor score`</span> y <span class="in">`Mean score`</span> podría deberse a que en simulación únicamente se manipuló el parámetro de intercepto ($\nu$) y no las cargas factoriales diferentes entre grupos ($\lambda$).</span>
 </code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

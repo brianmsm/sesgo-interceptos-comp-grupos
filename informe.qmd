@@ -1,7 +1,7 @@
 ---
-title: "Evaluación del Impacto del Sesgo de Ítems en la
-    Comparabilidad de Grupos: Un Estudio de Simulación con 
-    Puntuaciones Promediadas, Factor Scores y Modelos MIMIC."
+title: "Impacto del Sesgo de Ítems en la
+    Comparabilidad de Grupos: Simulación con 
+    Puntuaciones Promediadas, Factor Scores y Modelos MIMIC"
 authors:
   - name: Brian Norman Peña-Calero
     corresponding: true
@@ -31,7 +31,6 @@ format:
 execute: 
   fig-dpi: 300
   fig-align: center
-  cache: true
 lang: es
 lightbox: true
 embed-resources: true
@@ -48,6 +47,14 @@ if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "latex") {
 # Introducción
 
 Este proyecto de simulación investigará cómo la presencia de sesgo en los interceptos de los ítems afecta la comparabilidad de las puntuaciones entre dos grupos. Se examinará el impacto de diferentes magnitudes de sesgo de ítem y diferentes magnitudes de diferencias verdaderas en las medias latentes sobre tres métodos comunes de comparación: puntuaciones promediadas, factor scores derivados de Análisis Factorial Confirmatorio (AFC), y estimaciones de medias latentes de modelos MIMIC (Multiple Indicators Multiple Causes). El estudio también considerará el efecto del tamaño muestral en la precisión de estas comparaciones.
+
+:::: {.content-visible when-format="pdf"}
+
+::: {.callout-important}
+Una versión de este informe puede ser encontrada en línea en [https://brianmsm.github.io/sesgo-interceptos-comp-grupos/informe.html](https://brianmsm.github.io/sesgo-interceptos-comp-grupos/informe.html).
+:::
+
+::::
 
 # Objetivos
 
